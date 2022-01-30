@@ -12,11 +12,15 @@ A list of five-letter words, generated using a ruby script and the original word
 
 A list of five-letter words consisting of five different letters, generated using a script and the original word list.
 
+----
+
 ### Original List of English Words
 
 `word-lists/word-list-original.txt` 
 
 A word list used to generate more useful word lists above. It is based on dictionary files used in [Ruby Lemmatizer](https://github.com/yohasebe/lemmatizer). Add as many words you like to this file as needed . 
+
+----
 
 ### Ruby Script
 
@@ -24,12 +28,13 @@ A word list used to generate more useful word lists above. It is based on dictio
 
 A filter script to generate *n*-letter word lists (`word-list.txt` and `word-list-uniq.txt`)
 
-The default n value is 5. Change NUM_LETTERS if necessary, and execute the following command in the same directory where the script is located. A directory (with the same title as the number specified in the script) will be created automatically.
-
+The default *n* value is 5. Change `NUM_LETTERS` if necessary, and execute the following command in the same directory where the script is located. A directory (with the same title as the number specified in the script) will be created automatically.
 
 ```
 ruby filter-script.rb
 ```
+
+----
 
 ### Author
 
