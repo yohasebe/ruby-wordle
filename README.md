@@ -37,7 +37,7 @@ A word list used to generate more useful word lists above. It is based on `words
 
 A solver script for Wordle
 
-Usage
+**Usage Example**
 
 ```plain-text
 > ruby script-solver.rb
