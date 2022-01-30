@@ -25,7 +25,7 @@ A list of five-letter words consisting of five different letters, generated usin
 
 `word-lists/word-list-original.txt`
 
-A word list used to generate more useful word lists above. It is based on `words_alpha.txt` in [dwyl/english-words](https://github.com/dwyl/english-words). Add as many words you like to this file as needed .
+A word list used to generate more useful word lists above. It is based on `words_alpha.txt` in [dwyl/english-words](https://github.com/dwyl/english-words).
 
 ----
 
