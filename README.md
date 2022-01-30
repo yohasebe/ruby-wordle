@@ -2,7 +2,7 @@
 
 - Lists of 5-letter English words
 - Ruby script to generate lists of *n*-letter words
-- Ruby Wordle solver
+- Ruby Wordle solver script
 
 ⬜️⬜️⬜️🟨🟨 \
 ⬜️🟩⬜️🟩⬜️ \
