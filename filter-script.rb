@@ -3,7 +3,7 @@
 NUM_LETTERS = 5
 
 original_word_list = File.readlines("./word-lists/word-list-original.txt")
-n_letter_dir = "./word-lists/#{NUM_LETTERS}"
+n_letter_dir = "./word-lists/#{NUM_LETTERS}-letters"
 
 unless Dir.exist? n_letter_dir
   Dir.mkdir File.expand_path(n_letter_dir)
