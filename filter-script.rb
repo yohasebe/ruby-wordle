@@ -1,5 +1,5 @@
 #! /usr/bin/env ruby
-#
+
 NUM_LETTERS = 5
 
 original_word_list = File.readlines("./word-lists/word-list-original.txt")
