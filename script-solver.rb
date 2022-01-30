@@ -37,7 +37,7 @@ def get_letters_used
 end
 
 def get_letters_not_used
-  puts "STEP 3) ⬛︎ Input letters not used in the word. Then Press Enter."
+  puts "STEP 3) ⬜️ Input letters not used in the word. Then Press Enter."
   puts "           [e.g. ieagh]"
   print "        ＞ "
   letters_not_used = gets.gsub(/\s+/, "").downcase
