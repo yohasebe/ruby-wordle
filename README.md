@@ -6,11 +6,11 @@ Lists of 5-letter English words and a Ruby script that generate lists of *n*-let
 
 `word-lists/5/word-list-uniq`
 
-A list of five-letter words, generated using a ruby script and the original word list.
+A list of five-letter words consisting of five different letters, generated using a script and the original word list.
 
 `word-lists/5/word-list` 
 
-A list of five-letter words consisting of five different letters, generated using a script and the original word list.
+A list of five-letter words, generated using a ruby script and the original word list.
 
 ----
 
