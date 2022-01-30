@@ -1,8 +1,6 @@
 # Ruby-Wordle
 
-- Lists of 5-letter English words
-- Ruby script to generate lists of *n*-letter words
-- Ruby Wordle solver script
+A set of ruby scripts to generate word-lists and solve Wordle
 
 ⬜️⬜️⬜️🟨🟨 \
 ⬜️🟩⬜️🟩⬜️ \
@@ -11,27 +9,7 @@
 
 ----
 
-### Lists of English Words of 5 Letters (useful to solve Wordle)
-
-🟢 `word-lists/5/word-list.txt`
-
-A list of five-letter words, generated using a ruby script and the original word list.
-
-🟢 `word-lists/5/word-list-uniq-letters.txt`
-
-A list of five-letter words consisting of five different letters, generated using a script and the original word list.
-
-----
-
-### Original List of English Words
-
-🟢 `word-lists/word-list-original.txt`
-
-A word list used to generate more useful word lists above. It is based on `words_alpha.txt` in [dwyl/english-words](https://github.com/dwyl/english-words).
-
-----
-
-### Ruby Script
+### Ruby Scripts
 
 🟢 `script-solver.rb`
 
@@ -64,9 +42,30 @@ A filter script to generate *n*-letter word lists (`word-list.txt` and `word-lis
 
 The default *n* value is 5. Change `NUM_LETTERS` if necessary, and execute the following command in the same directory where the script is located. A directory will be created automatically with the title having the number specified in the script (e.g. 5-letters, 6-letters).
 
+**Usage Example**
+
 ```
 > ruby script-filter.rb
 ```
+----
+
+### Lists of English Words of 5 Letters (useful to solve Wordle)
+
+🟢 `word-lists/5/word-list.txt`
+
+A list of five-letter words, generated using a ruby script and the original word list.
+
+🟢 `word-lists/5/word-list-uniq-letters.txt`
+
+A list of five-letter words consisting of five different letters, generated using a script and the original word list.
+
+----
+
+### Original List of English Words
+
+🟢 `word-lists/word-list-original.txt`
+
+A word list used to generate more useful word lists above. It is based on `words_alpha.txt` in [dwyl/english-words](https://github.com/dwyl/english-words).
 
 ----
 
