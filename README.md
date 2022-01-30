@@ -2,6 +2,11 @@
 
 Lists of 5-letter English words and a Ruby script that generates lists of *n*-letter words
 
+⬜️⬜️⬜️🟨🟨 \
+⬜️🟩⬜️🟩⬜️ \
+🟩🟩⬜️🟩🟩 \
+🟩🟩🟩🟩🟩
+
 ----
 
 ### Lists of English Words of 5 Letters (useful to solve Wordle)
