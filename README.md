@@ -2,6 +2,8 @@
 
 Lists of 5-letter English words and a Ruby script that generate lists of *n*-letter words
 
+----
+
 ### Lists of English Words of 5 Letters (useful to solve Wordle)
 
 `word-lists/5/word-list-uniq`
