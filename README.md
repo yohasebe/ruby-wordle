@@ -2,6 +2,7 @@
 
 A set of ruby scripts to generate word-lists and solve Wordle
 
+⬜️⬜️⬜️⬜️⬜️ \
 ⬜️⬜️⬜️🟨🟨 \
 ⬜️🟩⬜️🟩⬜️ \
 🟩🟩⬜️🟩🟩 \
