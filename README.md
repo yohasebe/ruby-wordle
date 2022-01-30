@@ -62,7 +62,7 @@ fraze, grade, grame, grane, grave, graze
 
 A filter script to generate *n*-letter word lists (`word-list.txt` and `word-list-uniq.txt`)
 
-The default *n* value is 5. Change `NUM_LETTERS` if necessary, and execute the following command in the same directory where the script is located. A directory (with the title having the number specified in the script) will be created automatically.
+The default *n* value is 5. Change `NUM_LETTERS` if necessary, and execute the following command in the same directory where the script is located. A directory will be created automatically with the title having the number specified in the script (e.g. 5-letters, 6-letters).
 
 ```
 > ruby script-filter.rb
