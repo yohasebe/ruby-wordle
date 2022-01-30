@@ -10,7 +10,7 @@ unless Dir.exist? n_letter_dir
 end
 
 n_letter_word_file = File.new(File.join(n_letter_dir, "word-list.txt"), "w")
-uniq_n_letter_word_file= File.new(File.join(n_letter_dir, "word-list-uniq"), "w")
+uniq_n_letter_word_file= File.new(File.join(n_letter_dir, "word-list-uniq-letters"), "w")
 
 original_word_list.sort!.uniq!
 
