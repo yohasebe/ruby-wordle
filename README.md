@@ -1,12 +1,12 @@
 # Word-lists for Wordle
 
-Lists of *n*-letter English words and a Ruby script that generate them
+Lists of 5-letter English words and a Ruby script that generate lists of *n*-letter words
 
-### Lists of English Words of 5 Letters (Useful to solve Wordle)
+### Lists of English Words of 5 Letters (useful to solve Wordle)
 
 `word-lists/5/word-list-uniq`
 
-A list of 5 letter words, generated using a ruby script and the original word list.
+A list of five-letter words, generated using a ruby script and the original word list.
 
 `word-lists/5/word-list` 
 
