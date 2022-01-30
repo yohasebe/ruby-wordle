@@ -150,12 +150,14 @@ affair
 affect
 afford
 afraid
+africa
 african
 african-american
 after
 afternoon
 again
 against
+agatha christie
 age
 agency
 agenda
@@ -598,6 +600,7 @@ atheroscleroses
 atherosclerosis
 athlete
 athletic
+atlantic ocean
 atmolyses
 atmolysis
 atmosphere
@@ -618,6 +621,7 @@ attorneys-at-law
 attract
 attractive
 attribute
+audi
 audience
 auditoria
 auditorium
@@ -633,6 +637,7 @@ aurorae
 auspex
 auspice
 auspices
+australia
 author
 authority
 auto
@@ -776,6 +781,7 @@ basso
 bastinado
 bastinadoes
 bat
+bata
 bateau
 bateaux
 batfish
@@ -910,6 +916,7 @@ benefitted
 benefitting
 benempt
 bent
+berlin wall
 berried
 berry
 bersagliere
@@ -1090,6 +1097,7 @@ bluest
 blur
 blurred
 blurring
+bmw
 board
 boarfish
 boarfishes
@@ -1352,6 +1360,7 @@ bureau
 bureau_de_change
 bureaux
 bureaux_de_change
+burger king
 buried
 burlier
 burliest
@@ -1441,6 +1450,7 @@ calf
 calices
 calico
 calicoes
+california
 calix
 call
 calli
@@ -1481,6 +1491,7 @@ cannier
 canniest
 canning
 canny
+canon
 canopied
 canopy
 canter
@@ -1771,6 +1782,7 @@ chillies
 chilliest
 chilly
 chin
+china
 chinese
 chinese_eddo
 chinese_eddoes
@@ -2058,6 +2070,7 @@ cognosenti
 coif
 coiffed
 coiffing
+coke
 cola
 cold
 coleorhiza
@@ -2608,6 +2621,7 @@ dagging
 dago
 dagoes
 daily
+daily news
 daimio
 daintier
 daintiest
@@ -2630,6 +2644,7 @@ dandify
 dandy
 danger
 dangerous
+daniel
 dap
 dapped
 dapping
@@ -2649,6 +2664,7 @@ dead
 deadlier
 deadliest
 deadly
+deadpool
 deal
 dealer
 dealfish
@@ -2671,6 +2687,7 @@ debussing
 decade
 decalcified
 decalcify
+december
 decemvir
 decemviri
 decennia
@@ -2730,6 +2747,7 @@ deify
 delay
 deliver
 delivery
+dell
 delphinia
 delphinium
 demand
@@ -3022,6 +3040,7 @@ djinny
 dna
 do
 doctor
+doctor norris
 document
 dodgier
 dodgiest
@@ -3040,6 +3059,7 @@ dogma
 dogmata
 dogteeth
 dogtooth
+dollar
 dollarfish
 dollarfishes
 dollied
@@ -3097,6 +3117,7 @@ dozen
 dozier
 doziest
 dozy
+dr. morgan
 drab
 drabbed
 drabber
@@ -3317,6 +3338,7 @@ ego-tripped
 ego-tripping
 eidola
 eidolon
+eiffel tower
 eight
 eisegeses
 eisegesis
@@ -3440,6 +3462,7 @@ engage
 engine
 engineer
 engineering
+england
 english
 englut
 englutted
@@ -3595,6 +3618,7 @@ eupatrid
 eupatridae
 euripi
 euripus
+europe
 european
 evaluate
 evaluation
@@ -3692,6 +3716,7 @@ fabliau
 fabliaux
 fabric
 face
+facebook
 facet
 facetted
 facetting
@@ -3814,6 +3839,7 @@ feria
 feriae
 fermata
 fermate
+ferrari
 ferried
 ferry
 ferula
@@ -4119,6 +4145,7 @@ force
 force-fed
 force-feed
 forceps
+ford
 fordid
 fordo
 fordone
@@ -4219,6 +4246,7 @@ fraena
 fraenum
 frame
 framework
+france
 frap
 frapped
 frapping
@@ -4519,6 +4547,7 @@ genu
 genua
 genus
 german
+germany
 germen
 germina
 gesellschaft
@@ -4696,6 +4725,7 @@ gooey
 goofier
 goofiest
 goofy
+google
 gooier
 gooiest
 goose
@@ -5004,6 +5034,7 @@ hardly
 hardy
 haredi
 haredim
+harman miller
 harried
 harry
 haruspex
@@ -5081,6 +5112,7 @@ heel
 heftier
 heftiest
 hefty
+heidi
 height
 heir-at-law
 heirs-at-law
@@ -5176,6 +5208,7 @@ hill
 hilum
 hilus
 him
+himalayas
 himatia
 himation
 himself
@@ -5467,7 +5500,9 @@ indemnify
 independence
 independent
 index
+india
 indian
+indian ocean
 indicate
 indication
 indices
@@ -5676,6 +5711,8 @@ jammier
 jammiest
 jamming
 jammy
+janet
+january
 japan
 japanese
 japanned
@@ -5697,6 +5734,7 @@ jellyfish
 jellyfishes
 jemmied
 jemmy
+jennifer lopez
 jerkier
 jerkiest
 jerky
@@ -5720,6 +5758,7 @@ jibbing
 jig
 jigged
 jigging
+jim
 jimmied
 jimmy
 jingo
@@ -5741,6 +5780,7 @@ jog-trotted
 jog-trotting
 jogged
 jogging
+john
 join
 join_battle
 join_forces
@@ -5772,6 +5812,7 @@ joy-rode
 joypop
 joypopped
 joypopping
+judaism
 judge
 judge_advocate_general
 judge_advocates_general
@@ -5792,6 +5833,7 @@ jumping_off
 jumps_off
 jumpy
 junior
+jupiter
 jura
 jury
 jus
@@ -5799,6 +5841,7 @@ just
 justice
 justified
 justify
+justin
 jut
 jutted
 jutting
@@ -5939,6 +5982,7 @@ laden
 ladies-in-waiting
 ladify
 lady
+lady gaga
 lady-in-waiting
 ladyfied
 ladyfies
@@ -6244,6 +6288,7 @@ logion
 logy
 lomenta
 lomentum
+london
 lonelier
 loneliest
 lonely
@@ -6475,6 +6520,7 @@ marchesi
 maremma
 maremme
 margin
+maria
 mariner
 mark
 market
@@ -6533,11 +6579,13 @@ maxillae
 maxima
 maximum
 may
+maya
 maybe
 mayor
 mazier
 maziest
 mazy
+mcdonald's
 me
 meal
 mealier
@@ -6596,6 +6644,7 @@ memento
 mementoes
 memoranda
 memorandum
+memorial day
 memory
 men
 men-at-arms
@@ -6610,6 +6659,7 @@ menstruum
 mental
 mention
 menu
+mercedes
 mere
 merely
 merrier
@@ -6664,12 +6714,14 @@ mezuzoth
 miasma
 miasmata
 mice
+michel
 microanalyses
 microanalysis
 micrococci
 micrococcus
 micronuclei
 micronucleus
+microsoft
 microsporangia
 microsporangium
 middle
@@ -6823,6 +6875,7 @@ momus
 monad
 monades
 monas
+monday
 money
 monitor
 monkfish
@@ -6911,6 +6964,7 @@ mouldier
 mouldiest
 mouldy
 mount
+mount everest
 mountain
 mouse
 mousier
@@ -7058,6 +7112,7 @@ nares
 naris
 narrative
 narrow
+nasa
 nasopharynges
 nasopharynx
 nastier
@@ -7143,6 +7198,7 @@ nevertheless
 nevi
 nevus
 new
+new york
 newly
 news
 newsier
@@ -7174,6 +7230,7 @@ nifty
 night
 nigrified
 nigrify
+nikon
 nilgai
 nimbi
 nimbostrati
@@ -7421,6 +7478,7 @@ ora
 orange
 order
 ordinary
+oreo
 organa
 organic
 organization
@@ -7638,6 +7696,7 @@ own
 owner
 ox
 oxen
+oxford university
 oxymora
 oxymoron
 pace
@@ -7764,6 +7823,7 @@ parhelion
 pari-mutuel
 paries
 parietes
+paris
 paris-mutuels
 park
 parkier
@@ -7892,6 +7952,7 @@ penned
 penni
 pennia
 penning
+pennsylvania
 penny
 pent
 pentahedra
@@ -7910,6 +7971,7 @@ peppier
 peppiest
 pepping
 peppy
+pepsi
 per
 perceive
 percentage
@@ -7975,6 +8037,7 @@ pet
 petechia
 petechiae
 peter
+peter pan
 petrified
 petrify
 petted
@@ -8271,6 +8334,7 @@ pop
 popes
 popped
 popping
+poppy
 popular
 population
 porch
@@ -8580,6 +8644,7 @@ pub
 pubbed
 pubbing
 pubes
+pubg
 pubis
 public
 publication
@@ -8675,6 +8740,7 @@ quadrigae
 quaggier
 quaggiest
 quaggy
+quaker oats
 quakier
 quakiest
 quaky
@@ -8701,6 +8767,7 @@ quarterstaves
 queasier
 queasiest
 queasy
+queen
 queenlier
 queenliest
 queenly
@@ -9202,6 +9269,7 @@ rockfish
 rockfishes
 rockier
 rockiest
+rockledge
 rocky
 rode
 roilier
@@ -9211,6 +9279,7 @@ role
 roll
 rom
 roma
+roman catholic
 roman-fleuve
 romans-fleuves
 romantic
@@ -9289,6 +9358,7 @@ rusher
 rushier
 rushiest
 rushy
+russia
 russian
 rustier
 rustiest
@@ -9350,6 +9420,7 @@ salvoes
 same
 sample
 sampler
+samsung
 sancta
 sanctified
 sanctify
@@ -9632,6 +9703,7 @@ sephardim
 septa
 septaria
 septarium
+september
 septennia
 septennium
 septum
@@ -9920,6 +9992,7 @@ silverfish
 silverfishes
 similar
 similarly
+simon
 simple
 simplified
 simplify
@@ -10892,6 +10965,7 @@ summer
 summing
 summit
 sun
+sunday
 sunfish
 sunfishes
 sung
@@ -11000,6 +11074,7 @@ swum
 swung
 syconia
 syconium
+sydney
 syllabi
 syllabified
 syllabify
@@ -11409,6 +11484,7 @@ tire
 tired
 tiro
 tissue
+titanic
 title
 titmice
 titmouse
@@ -11428,6 +11504,7 @@ tog
 together
 togged
 togging
+tokyo
 told
 tomato
 tomatoes
@@ -11643,6 +11720,7 @@ trogging
 troop
 tropaeola
 tropaeolum
+tropicana
 trot
 trotted
 trotting
@@ -11675,6 +11753,7 @@ tubbier
 tubbiest
 tubby
 tube
+tuesday
 tug
 tugged
 tugging
@@ -11717,6 +11796,7 @@ twinned
 twinning
 twit
 twitted
+twitter
 twitting
 two
 tying
@@ -11858,6 +11938,7 @@ union
 unique
 unit
 united
+united state
 universal
 universe
 university
@@ -11995,6 +12076,8 @@ urge
 urinalyses
 urinalysis
 us
+usa
+usain bolt
 use
 used
 useful
@@ -12023,6 +12106,7 @@ valleculae
 valley
 valuable
 value
+van gogh
 vaporetti
 vaporetto
 variable
@@ -12126,6 +12210,7 @@ violate
 violation
 violence
 violent
+violet
 virago
 viragoes
 vires
@@ -12204,6 +12289,7 @@ wait
 wake
 walk
 wall
+walmart
 wan
 wander
 wanderjahr
@@ -12214,6 +12300,7 @@ wannest
 wanning
 want
 war
+war and peace
 warier
 wariest
 warm
@@ -12394,6 +12481,7 @@ wiliest
 will
 willing
 wily
+wimbledon
 win
 wind
 windier
@@ -12455,6 +12543,7 @@ wolffish
 wolffishes
 wolves
 woman
+women's day
 won
 wonder
 wonderful

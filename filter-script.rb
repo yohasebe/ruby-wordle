@@ -17,6 +17,7 @@ original_word_list.sort!.uniq!
 original_word_list.each do |line|
   chars = line.strip.split(//)
   if chars.size == NUM_LETTERS
+    line.downcase!
     n_letter_word_file.write line
     if chars.uniq.size == chars.size
       uniq_n_letter_word_file.write line

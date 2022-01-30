@@ -1,6 +1,6 @@
 # Word-lists for Wordle
 
-Lists of 5-letter English words and a Ruby script that generate lists of *n*-letter words
+Lists of 5-letter English words and a Ruby script that generates lists of *n*-letter words
 
 ----
 

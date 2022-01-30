@@ -186,6 +186,7 @@ calyx
 canal
 candy
 canny
+canon
 canty
 caput
 cargo
@@ -214,6 +215,7 @@ chewy
 chide
 chief
 child
+china
 chivy
 chose
 choux
@@ -541,6 +543,7 @@ heave
 heavy
 heder
 hefty
+heidi
 helix
 hello
 herby
@@ -582,6 +585,7 @@ imply
 incur
 incus
 index
+india
 infer
 inlay
 inner
@@ -592,6 +596,7 @@ irish
 issue
 jaggy
 jammy
+janet
 japan
 jazzy
 jelly
@@ -703,6 +708,7 @@ mango
 mangy
 manky
 manly
+maria
 marry
 masse
 massy
@@ -781,6 +787,7 @@ newsy
 nidus
 nifty
 night
+nikon
 nimbi
 nippy
 nitty
@@ -833,6 +840,7 @@ panic
 paper
 pappi
 pappy
+paris
 parky
 parry
 party
@@ -853,6 +861,7 @@ penni
 penny
 pepla
 peppy
+pepsi
 perky
 pesky
 peter
@@ -890,6 +899,7 @@ podia
 point
 polis
 popes
+poppy
 porch
 porky
 potty
@@ -926,6 +936,7 @@ putty
 pyxis
 quaky
 quale
+queen
 query
 quick
 quiet
@@ -1092,6 +1103,7 @@ sight
 silky
 silly
 silva
+simon
 since
 singe
 ski'd
@@ -1285,6 +1297,7 @@ tired
 title
 toady
 today
+tokyo
 tondi
 tondo
 tooth
