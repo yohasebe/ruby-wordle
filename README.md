@@ -40,7 +40,7 @@ fraze, grade, grame, grane, grave, graze
 
 A filter script to generate *n*-letter word lists (`word-list.txt` and `word-list-uniq.txt`)
 
-The default *n* value is 5. Change `NUM_LETTERS` if necessary, and execute the following command in the same directory where the script is located. A directory will be created automatically with the title having the number specified in the script (e.g. 5-letters, 6-letters).
+The default *n* value is 5. Change `NUM_LETTERS` if necessary, and execute the following command in the same directory where the script is located. A directory will be created automatically with the title having the number specified in the script (e.g. `word-lists/5-letters`, `word-lists/6-letters`).
 
 **Usage Example**
 
@@ -51,11 +51,11 @@ The default *n* value is 5. Change `NUM_LETTERS` if necessary, and execute the f
 
 ### Lists of English Words of 5 Letters (useful to solve Wordle)
 
-🟢 `word-lists/5/word-list.txt`
+🟢 `word-lists/5-letters/word-list.txt`
 
 A list of five-letter words, generated using a ruby script and the original word list.
 
-🟢 `word-lists/5/word-list-uniq-letters.txt`
+🟢 `word-lists/5-letters/word-list-uniq-letters.txt`
 
 A list of five-letter words consisting of five different letters, generated using a script and the original word list.
 
