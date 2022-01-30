@@ -11,13 +11,13 @@ Lists of 5-letter English words and a Ruby script that generates lists of *n*-le
 
 ### Lists of English Words of 5 Letters (useful to solve Wordle)
 
-`word-lists/5/word-list-uniq`
-
-A list of five-letter words consisting of five different letters, generated using a script and the original word list.
-
 `word-lists/5/word-list`
 
 A list of five-letter words, generated using a ruby script and the original word list.
+
+`word-lists/5/word-list-uniq`
+
+A list of five-letter words consisting of five different letters, generated using a script and the original word list.
 
 ----
 
@@ -25,7 +25,7 @@ A list of five-letter words, generated using a ruby script and the original word
 
 `word-lists/word-list-original.txt`
 
-A word list used to generate more useful word lists above. It is based on dictionary files used in [Ruby Lemmatizer](https://github.com/yohasebe/lemmatizer). Add as many words you like to this file as needed .
+A word list used to generate more useful word lists above. It is based on `words_alpha.txt` in [dwyl/english-words](https://github.com/dwyl/english-words). Add as many words you like to this file as needed .
 
 ----
 
