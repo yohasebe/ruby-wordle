@@ -10,16 +10,20 @@ A set of ruby scripts to generate word-lists and solve Wordle
 
 ----
 
+### Installation
+
+```
+> gem install ruby-wordle
+```
+
+----
+
 ### Wordle Solver
-
-🟢 `script-solver.rb`
-
-A solver script for Wordle
 
 **Usage Example**
 
 ```plain-text
-> ruby script-solver.rb
+> ruby-worldle-solver
 
 STEP 1) 🟩 Input letters and positions using alphabets and dots. Then press Enter
            [e.g. s...h]
@@ -37,53 +41,49 @@ fraze, grade, grame, grane, grave, graze
 ------------------------------------------------
 ```
 
-- Basic words consisting of 5 different letters are printed in red 🟥
-- Basic words having the same letters used more than once are printed in blue 🟦
+In the result list, basic words consisting of 5 different letters are printed in red 🟥 while basic words having the same letters used more than once are printed in blue 🟦
 
 ----
 
-### Word List Generator
+### Word Lists
 
-🟢 `script-filter.rb`
+#### Word List Generator Script
 
-A filter script to generate *n*-letter word lists (`word-list.txt` and `word-list-uniq.txt`)
+🟢 `lib/ruby-wordle/script-filter.rb`
 
-The default *n* value is 5. Change `NUM_LETTERS` if necessary, and execute the following command in the same directory where the script is located. A directory will be created automatically with the title having the number specified in the script (e.g. `word-lists/5-letters`, `word-lists/6-letters`).
+A ruby script to generate *n*-letter word lists (`word-list.txt` and `word-list-uniq.txt`)
 
-**Usage Example**
+The default *n* value is 5. Change `NUM_LETTERS` if necessary, and run the script as follows. A directory will be created automatically with the title having the number specified in the script (e.g. `word-lists/5-letters`, `word-lists/6-letters`) and resulting word lists will be stored in that directory.
 
-```
-> ruby script-filter.rb
-```
 ----
 
-### Lists of English Words of 5 Letters (useful to solve Wordle)
+#### Lists of English Words of 5 Letters (useful to solve Wordle)
 
-🟢 `word-lists/5-letters/word-list.txt`
+🟡 `word-lists/5-letters/word-list.txt`
 
 A list of five-letter words, generated from the original word list.
 
-🟢 `word-lists/5-letters/word-list-uniq-letters.txt`
+🟡 `word-lists/5-letters/word-list-uniq-letters.txt`
 
 A list of five-letter words consisting of five different letters, generated from the original word list.
 
-🟢 `word-lists/5-letters/word-list-basic.txt`
+🟡 `word-lists/5-letters/word-list-basic.txt`
 
 A list of five-letter words, generated from the basic word list.
 
-🟢 `word-lists/5-letters/word-list-basic-uniq-letters.txt`
+🟡 `word-lists/5-letters/word-list-basic-uniq-letters.txt`
 
 A list of five-letter words consisting of five different letters, generated from the basic word list.
 
 ----
 
-### Original/Basic Lists of English Words
+#### Original/Basic Lists of English Words
 
-🟢 `word-lists/word-list-original.txt`
+⚪️ `word-lists/word-list-original.txt`
 
 A large word list based on `words_alpha.txt` in [dwyl/english-words](https://github.com/dwyl/english-words), containing more than 370,000 items.
 
-🟢 `word-lists/word-list-basic.txt`
+⚪️ `word-lists/word-list-basic.txt`
 
 A smaller word list containing about 13,000 basic English words.
 

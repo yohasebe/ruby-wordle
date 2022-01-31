@@ -1,22 +1,6 @@
 #! /usr/bin/env ruby
 
-NUM_LETTERS = 5
-
-@word_list = File.readlines("./word-lists/#{NUM_LETTERS}-letters/word-list.txt").map(&:strip)
-
-@basic_word_list = {}
-File.readlines("./word-lists/#{NUM_LETTERS}-letters/word-list-basic.txt").map(&:strip).each do |b|
-  @basic_word_list[b] = true
-end
-
-@basic_word_uniq_list = {}
-File.readlines("./word-lists/#{NUM_LETTERS}-letters/word-list-basic-uniq-letters.txt").map(&:strip).each do |b|
-  @basic_word_uniq_list[b] = true
-end
-
-@letters_known = nil
-@letters_used  = nil
-@letters_not_used = nil
+require "readline"
 
 class String
   def black;          "\e[30m#{self}\e[0m" end
@@ -44,20 +28,42 @@ class String
   def reverse_color;  "\e[7m#{self}\e[27m" end
 end
 
+NUM_LETTERS = 5
+
+LPAD = " " * 7
+PROMPT = "〉".bold.red
+
+@word_list = File.readlines("./word-lists/#{NUM_LETTERS}-letters/word-list.txt").map(&:strip)
+
+@basic_word_list = {}
+File.readlines("./word-lists/#{NUM_LETTERS}-letters/word-list-basic.txt").map(&:strip).each do |b|
+  @basic_word_list[b] = true
+end
+
+@basic_word_uniq_list = {}
+File.readlines("./word-lists/#{NUM_LETTERS}-letters/word-list-basic-uniq-letters.txt").map(&:strip).each do |b|
+  @basic_word_uniq_list[b] = true
+end
+
+@letters_known = nil
+@letters_used  = nil
+@letters_not_used = nil
+
 def get_letters_known
   puts
   puts  "STEP 1".bold.bg_green + " Input " + "known letters".underline + " using alphabets and dots"
-  puts  "       Then press \"↵\" (Type \"quit↵\" to exit)"
+  puts  LPAD + "Then press \"↵\" (Type \"quit↵\" to exit)"
   if @letters_known
-    puts  "       Last time: #{@letters_known.bg_green}"
+    puts LPAD + "Last time: #{@letters_known.bg_green}"
   else
-    puts  "       Example: #{'s...h'.bg_green}"
+    puts LPAD + "Example: #{'s...h'.bg_green}"
   end
-  print "       ＞ "
-  letters_known = gets.strip.downcase
+
+  letters_known = Readline.readline(LPAD + PROMPT, true).strip.downcase
+
   exit if letters_known == "quit" || letters_known == "q"
   unless /\A[a-z\.]{5}\z/ =~ letters_known
-    puts "Sorry, the input format is not right"
+    puts LPAD + "Sorry,".red + " the input format is not right"
     letters_known = get_letters_known
   end
   letters_known
@@ -65,26 +71,26 @@ end
 
 def get_letters_used
   puts
-  puts  "STEP 2".bold.bg_brown + " Input pairs of " + "a position and a letter".underline
-  puts  "       Then press \"↵\" (Type \"quit↵\" to exit)"
+  puts "STEP 2".bold.bg_brown + " Input pairs of " + "a position and a letter".underline
+  puts LPAD + "Then press \"↵\" (Type \"quit↵\" to exit)"
   if @letters_used
-    puts  "       Last time: #{@letters_used.map{|p, l| (p + 1).to_s + l}.join(' ').bg_brown}"
+    puts LPAD + "Last time: #{@letters_used.map{|p, l| (p + 1).to_s + l}.join(' ').bg_brown}"
   else
-    puts  "       Example: #{'1g 2e 5a'.bg_brown}"
+    puts LPAD + "Example: #{'1g 2e 5a'.bg_brown}"
   end
-  print "       ＞ "
-  letters_used = gets.strip.downcase
+
+  letters_used = Readline.readline(LPAD + PROMPT, true).strip.downcase
+
   exit if letters_used == "quit" || letters_used == "q"
   if letters_used.strip == ""
     array_letters_used = []
   elsif /\A(?:[1-5][a-z][\s,]*)+\z/ =~ letters_used
     array_letters_used = []
-    letters_used.split(" ").each do |kv|
-      kv.strip!
-      array_letters_used << [kv[0].to_i - 1, kv[1]]
+    letters_used.gsub(/\s+/, "").split(//).each_slice(2) do |k, v|
+      array_letters_used << [k.to_i - 1, v]
     end
   else
-    puts "Sorry, the input format is not right"
+    puts LPAD + "Sorry,".red + " the input format is not right"
     array_letters_used = get_letters_used
   end
   array_letters_used
@@ -92,28 +98,33 @@ end
 
 def get_letters_not_used
   puts
-  puts  "STEP 3".bold.bg_gray + " Input " + "letters not used".underline + " in the word"
-  puts  "       Then press \"↵\" (Type \"quit↵\" to exit)"
+  puts "STEP 3".bold.bg_gray + " Input " + "letters not used".underline + " in the word"
+  puts LPAD + "Then press \"↵\" (Type \"quit↵\" to exit)"
   if @letters_not_used
-    puts  "       Last time: #{@letters_not_used.join.bg_gray}"
+    puts LPAD + "Last time: #{@letters_not_used.join.bg_gray}"
   else
-    puts  "       Example: #{'ieagh'.bg_gray}"
+    puts LPAD + "Example: #{'ieagh'.bg_gray}"
   end
-  print "       ＞ "
-  letters_not_used = gets.gsub(/\s+/, "").downcase
+
+  letters_not_used = Readline.readline(LPAD + PROMPT, true).strip.downcase
+
   exit if letters_not_used == "quit" || letters_not_used == "q"
   if letters_not_used.strip == ""
     array_letters_not_used = []
   elsif /\A[a-z\s]+\z/ =~ letters_not_used
     array_letters_not_used = letters_not_used.split(//)
   else
-    puts "Sorry, the input format is not right"
+    puts LPAD + "Sorry,".red + " the input format is not right"
     array_letters_not_used = get_letters_not_used
   end
   array_letters_not_used
 end
 
 def solve_wordle
+  puts
+  puts (' '.bg_green * 5 + ' '.bg_gray * 3 + ' '.bg_brown  * 5 + ' '.bg_gray * 3) * 4
+  puts
+
   @letters_known = get_letters_known
   @letters_used  = get_letters_used
   @letters_not_used = get_letters_not_used
@@ -135,7 +146,8 @@ def solve_wordle
   end
 
   puts
-  puts (' '.bg_green * 4 + ' '.bg_gray * 4 + ' '.bg_brown  * 4 + ' '.bg_gray * 4) * 4
+  puts (' '.bg_green * 5 + ' '.bg_gray * 3 + ' '.bg_brown  * 5 + ' '.bg_gray * 3) * 4
+  puts
   results = word_list_b.map do |word|
     if @basic_word_uniq_list[word]
       word.red.bold
@@ -144,16 +156,25 @@ def solve_wordle
     else
       word
     end
-  end.join("\t")
-  puts results
-  puts (' '.bg_green * 4 + ' '.bg_gray * 4 + ' '.bg_brown  * 4 + ' '.bg_gray * 4) * 4
+  end
+  results.each_with_index do |word, i|
+    if (i + 1) % 8 == 0 || results.size == i + 1
+      print word + "\n"
+    else
+      print word + "   "
+    end
+  end
   puts
+  puts (' '.bg_green * 5 + ' '.bg_gray * 3 + ' '.bg_brown  * 5 + ' '.bg_gray * 3) * 4
 
   exit if word_list_b.size < 2
 
-  puts "       Press \"↵\" to continue."
-  puts "       Type \"quit↵\" to exit."
-  response = gets.strip.downcase
+  puts
+  puts "  ？  ".bold.bg_magenta + " Press \"↵\" to continue."
+  puts LPAD + "Type \"quit↵\" to exit."
+
+  response = Readline.readline(LPAD + PROMPT, true).strip.downcase
+
   if response == "quit" || response == "q"
     exit
   else

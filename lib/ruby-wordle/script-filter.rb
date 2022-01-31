@@ -2,9 +2,11 @@
 
 NUM_LETTERS = 5
 
-original_word_list = File.readlines("./word-lists/word-list-original.txt")
-basic_word_list = File.readlines("./word-lists/word-list-basic.txt")
-n_letter_dir = "./word-lists/#{NUM_LETTERS}-letters"
+HOME_DIR = File.expand_path(File.join(File.dirname(__FILE__), "..", ".."))
+
+original_word_list = File.readlines("#{HOME_DIR}/word-lists/word-list-original.txt")
+basic_word_list = File.readlines("#{HOME_DIR}/word-lists/word-list-basic.txt")
+n_letter_dir = "#{HOME_DIR}/word-lists/#{NUM_LETTERS}-letters"
 
 unless Dir.exist? n_letter_dir
   Dir.mkdir File.expand_path(n_letter_dir)
@@ -43,3 +45,4 @@ n_letter_word_file.close
 uniq_n_letter_word_file.close
 basic_n_letter_word_file.close
 uniq_basic_n_letter_word_file.close
+
