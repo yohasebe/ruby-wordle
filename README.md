@@ -37,8 +37,8 @@ fraze, grade, grame, grane, grave, graze
 ------------------------------------------------
 ```
 
-- Basic words consisting of 5 different letters are printed in <small>🟩</small> **green bold**
-- Basic words having the same letters used more than once are printed in <small>🟨</small> **yellow bold**
+- Basic words consisting of 5 different letters are printed in <span style='color: red; font-weight: bold'>red</span>
+- Basic words having the same letters used more than once are printed in <span style='color: magenta; font-weight: bold'>magenta</span>
 
 ----
 
