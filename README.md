@@ -24,22 +24,9 @@ A set of ruby scripts to generate word-lists and solve Wordle
 
 ```plain-text
 > ruby-worldle-solver
-
-STEP 1) 🟩 Input letters and positions using alphabets and dots. Then press Enter
-           [e.g. s...h]
-        ＞ .r..e
-STEP 2) 🟨 Input pairs of a position (starting from 1) and a letter. Then press Enter.
-           [e.g. 1g 2e 5a]
-        ＞ 3e 4e 4r
-STEP 3) ⬛︎ Input letters not used in the word. Then Press Enter.
-           [e.g. ieagh]
-        ＞ hotlquypic
-------------------------------------------------
-arage, arake, arase, brake, brame, brave, braze, 
-drake, drame, drave, erade, erase, frame, frase, 
-fraze, grade, grame, grane, grave, graze
-------------------------------------------------
 ```
+
+![ruby-wordle-solver-screenshot](https://github.com/yohasebe/ruby-wordle-solver/blob/main/img/ruby-wordle-solver.png?raw=true)
 
 In the result list, basic words consisting of 5 different letters are printed in red 🟥 while basic words having the same letters used more than once are printed in blue 🟦
 
