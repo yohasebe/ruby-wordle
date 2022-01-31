@@ -135,7 +135,7 @@ def solve_wordle
   end
 
   puts
-  puts (' '.bg_green * 4 + ' '.bg_gray * 4 + ' '.bg_brown  * 4 + ' '.bg_gray * 4) * 3
+  puts (' '.bg_green * 4 + ' '.bg_gray * 4 + ' '.bg_brown  * 4 + ' '.bg_gray * 4) * 4
   results = word_list_b.map do |word|
     if @basic_word_uniq_list[word]
       word.red.bold
@@ -146,7 +146,7 @@ def solve_wordle
     end
   end.join("\t")
   puts results
-  puts (' '.bg_green * 4 + ' '.bg_gray * 4 + ' '.bg_brown  * 4 + ' '.bg_gray * 4) * 3
+  puts (' '.bg_green * 4 + ' '.bg_gray * 4 + ' '.bg_brown  * 4 + ' '.bg_gray * 4) * 4
   puts
 
   exit if word_list_b.size < 2
