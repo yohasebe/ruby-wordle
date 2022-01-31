@@ -26,7 +26,7 @@ A set of ruby scripts to generate word-lists and solve Wordle
 > ruby-worldle-solver
 ```
 
-![ruby-wordle-solver-screenshot](https://github.com/yohasebe/ruby-wordle-solver/blob/main/img/ruby-wordle-solver.png?raw=true | width=250)
+<img src='https://github.com/yohasebe/ruby-wordle-solver/blob/main/img/ruby-wordle-solver.png?raw=true' width='250' />
 
 In the result list, basic words consisting of 5 different letters are printed in red 🟥 while basic words having the same letters used more than once are printed in blue 🟦
 
