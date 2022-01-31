@@ -7,14 +7,44 @@ NUM_LETTERS = 5
 @letters_used  = nil
 @letters_not_used = nil
 
+class String
+  def black;          "\e[30m#{self}\e[0m" end
+  def red;            "\e[31m#{self}\e[0m" end
+  def green;          "\e[32m#{self}\e[0m" end
+  def brown;          "\e[33m#{self}\e[0m" end
+  def blue;           "\e[34m#{self}\e[0m" end
+  def magenta;        "\e[35m#{self}\e[0m" end
+  def cyan;           "\e[36m#{self}\e[0m" end
+  def gray;           "\e[37m#{self}\e[0m" end
+
+  def bg_black;       "\e[40m#{self}\e[0m" end
+  def bg_red;         "\e[41m#{self}\e[0m" end
+  def bg_green;       "\e[42m#{self}\e[0m" end
+  def bg_brown;       "\e[43m#{self}\e[0m" end
+  def bg_blue;        "\e[44m#{self}\e[0m" end
+  def bg_magenta;     "\e[45m#{self}\e[0m" end
+  def bg_cyan;        "\e[46m#{self}\e[0m" end
+  def bg_gray;        "\e[47m#{self}\e[0m" end
+
+  def bold;           "\e[1m#{self}\e[22m" end
+  def italic;         "\e[3m#{self}\e[23m" end
+  def underline;      "\e[4m#{self}\e[24m" end
+  def blink;          "\e[5m#{self}\e[25m" end
+  def reverse_color;  "\e[7m#{self}\e[27m" end
+end
+
 def get_letters_known
-  puts  "STEP 1) 🟩 Input letters and positions using alphabets and dots."
-  puts  "           Then press \"↵\" (Type \"quit↵\" to exit)"
-  puts  "           [e.g. s...h]"
-  puts  "           Last time: #{@letters_known}" if @letters_known
-  print "        ＞ "
+  puts 
+  puts  "STEP 1".bold.bg_green + " Input " + "known letters".underline + " using alphabets and dots"
+  puts  "       Then press \"↵\" (Type \"quit↵\" to exit)"
+  if @letters_known
+    puts  "       Last time: #{@letters_known.bg_green}"
+  else
+    puts  "       Example: #{'s...h'.bg_green}"
+  end
+  print "       ＞ "
   letters_known = gets.strip.downcase
-  exit if letters_known == "quit" 
+  exit if letters_known == "quit" || letters_known == "q"
   unless /\A[a-z\.]{5}\z/ =~ letters_known
     puts "Sorry, the input format is not right"
     letters_known = get_letters_known
@@ -23,13 +53,17 @@ def get_letters_known
 end
 
 def get_letters_used
-  puts "STEP 2) 🟨 Input pairs of a position (starting from 1) and a letter. Then press Enter."
-  puts "           Then press \"↵\" (Type \"quit↵\" to exit)"
-  puts "           [e.g. 1g 2e 5a]"
-  puts  "           Last time: #{@letters_used.map{|l|l.join}.join(' ')}" if @letters_used
-  print "        ＞ "
+  puts
+  puts  "STEP 2".bold.bg_brown + " Input pairs of " + "a position and a letter".underline
+  puts  "       Then press \"↵\" (Type \"quit↵\" to exit)"
+  if @letters_used
+    puts  "       Last time: #{@letters_used.map{|l|l.join}.join(' ').bg_brown}"
+  else
+    puts  "       Example: #{'1g 2e 5a'.bg_brown}"
+  end
+  print "       ＞ "
   letters_used = gets.strip.downcase
-  exit if letters_used == "quit" 
+  exit if letters_used == "quit" || letters_used == "q" 
   if letters_used.strip == ""
     array_letters_used = []
   elsif /\A(?:[1-5][a-z][\s,]*)+\z/ =~ letters_used
@@ -46,13 +80,17 @@ def get_letters_used
 end
 
 def get_letters_not_used
-  puts "STEP 3) ⬜️ Input letters not used in the word. Then Press Enter."
-  puts "           Then press \"↵\" (Type \"quit↵\" to exit)"
-  puts "           [e.g. ieagh]"
-  puts  "          Last time: #{@letters_not_used.join}" if @letters_not_used
-  print "        ＞ "
+  puts
+  puts  "STEP 3".bold.bg_gray + " Input " + "letters not used".underline + " in the word"
+  puts  "       Then press \"↵\" (Type \"quit↵\" to exit)"
+  if @letters_not_used
+    puts  "       Last time: #{@letters_not_used.join.bg_gray}"
+  else
+    puts  "       Example: #{'ieagh'.bg_gray}"
+  end
+  print "       ＞ "
   letters_not_used = gets.gsub(/\s+/, "").downcase
-  exit if letters_not_used == "quit" 
+  exit if letters_not_used == "quit" || letters_not_used == "q" 
   if letters_not_used.strip == ""
     array_letters_not_used = []
   elsif /\A[a-z\s]+\z/ =~ letters_not_used
@@ -85,16 +123,18 @@ def solve_wordle
     cond1 && cond2 && cond3
   end
 
-  puts "------------------------------------------------"
+  puts
+  puts (' '.bg_green * 4 + ' '.bg_gray * 4 + ' '.bg_brown  * 4 + ' '.bg_gray * 4) * 3
   puts word_list_b.join(", ")
-  puts "------------------------------------------------"
+  puts (' '.bg_green * 4 + ' '.bg_gray * 4 + ' '.bg_brown  * 4 + ' '.bg_gray * 4) * 3
+  puts
 
   exit if word_list_b.size < 2
   
   puts "Press \"↵\" to continue."
   puts "Type \"quit↵\" to exit."
   response = gets.strip.downcase
-  if response == "quit" 
+  if response == "quit" || response == "q" 
   else
     solve_wordle
   end
