@@ -38,7 +38,7 @@ fraze, grade, grame, grane, grave, graze
 ```
 
 - Basic words consisting of 5 different letters are printed in red 🟥
-- Basic words having the same letters used more than once are printed in magenta 🟪
+- Basic words having the same letters used more than once are printed in magenta 🟦
 
 ----
 

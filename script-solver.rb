@@ -140,7 +140,7 @@ def solve_wordle
     if @basic_word_uniq_list[word]
       word.red.bold
     elsif @basic_word_list[word]
-      word.magenta.bold
+      word.blue.bold
     else
       word
     end
