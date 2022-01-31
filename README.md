@@ -10,7 +10,7 @@ A set of ruby scripts to generate word-lists and solve Wordle
 
 ----
 
-### Ruby Scripts
+### Wordle Solver
 
 🟢 `script-solver.rb`
 
@@ -39,6 +39,10 @@ fraze, grade, grame, grane, grave, graze
 
 - Basic words consisting of 5 different letters are printed in 🟩 **green bold**
 - Basic words having the same letters used more than once are printed in 🟨 **yellow bold**
+
+----
+
+### Word List Generator
 
 🟢 `script-filter.rb`
 
