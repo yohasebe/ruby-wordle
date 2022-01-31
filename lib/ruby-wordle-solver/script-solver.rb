@@ -1,5 +1,7 @@
 #! /usr/bin/env ruby
 
+HOME_DIR = File.expand_path(File.join(File.dirname(__FILE__), "..", ".."))
+
 require "readline"
 
 class String
@@ -34,15 +36,15 @@ module RubyWordleSolver
   LPAD = " " * 7
   PROMPT = "〉".bold.red
 
-  @word_list = File.readlines("./word-lists/#{NUM_LETTERS}-letters/word-list.txt").map(&:strip)
+  @word_list = File.readlines("#{HOME_DIR}/word-lists/#{NUM_LETTERS}-letters/word-list.txt").map(&:strip)
 
   @basic_word_list = {}
-  File.readlines("./word-lists/#{NUM_LETTERS}-letters/word-list-basic.txt").map(&:strip).each do |b|
+  File.readlines("#{HOME_DIR}/word-lists/#{NUM_LETTERS}-letters/word-list-basic.txt").map(&:strip).each do |b|
     @basic_word_list[b] = true
   end
 
   @basic_word_uniq_list = {}
-  File.readlines("./word-lists/#{NUM_LETTERS}-letters/word-list-basic-uniq-letters.txt").map(&:strip).each do |b|
+  File.readlines("#{HOME_DIR}/word-lists/#{NUM_LETTERS}-letters/word-list-basic-uniq-letters.txt").map(&:strip).each do |b|
     @basic_word_uniq_list[b] = true
   end
 
@@ -183,5 +185,3 @@ module RubyWordleSolver
 
   module_function :solve_wordle
 end
-
-RubyWordleSolver::solve_wordle
