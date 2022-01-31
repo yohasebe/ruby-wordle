@@ -57,7 +57,7 @@ def get_letters_used
   puts  "STEP 2".bold.bg_brown + " Input pairs of " + "a position and a letter".underline
   puts  "       Then press \"↵\" (Type \"quit↵\" to exit)"
   if @letters_used
-    puts  "       Last time: #{@letters_used.map{|l|l.join}.join(' ').bg_brown}"
+    puts  "       Last time: #{@letters_used.map{|p, l| (p + 1).to_s + l}.join(' ').bg_brown}"
   else
     puts  "       Example: #{'1g 2e 5a'.bg_brown}"
   end
