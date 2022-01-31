@@ -1,14 +1,14 @@
 # -*- encoding: utf-8 -*-
 $:.push File.expand_path("../lib", __FILE__)
 
-require "ruby-wordle/version"
+require "ruby-wordle-solver/version"
 
 Gem::Specification.new do |s|
-  s.name        = "ruby-wordle"
-  s.version     = RubyWordle::VERSION
+  s.name        = "ruby-wordle-solver"
+  s.version     = RubyWordleSolver::VERSION
   s.authors     = ["Yoichiro Hasebe"]
   s.email       = ["yohasebe@gmail.com"]
-  s.homepage    = "http://github.com/yohasebe/ruby-wordle"
+  s.homepage    = "http://github.com/yohasebe/ruby-wordle-solver"
   s.summary     = %q{A set of ruby scripts to generate word-lists and solve Wordle}
   s.description = %q{A set of ruby scripts to generate word-lists and solve Wordle}
   s.licenses    = ["MIT"]

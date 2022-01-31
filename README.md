@@ -1,4 +1,4 @@
-# Ruby-Wordle
+# Ruby-Wordle-Solver
 
 A set of ruby scripts to generate word-lists and solve Wordle
 
@@ -13,7 +13,7 @@ A set of ruby scripts to generate word-lists and solve Wordle
 ### Installation
 
 ```
-> gem install ruby-wordle
+> gem install ruby-wordle-solver
 ```
 
 ----
@@ -49,7 +49,7 @@ In the result list, basic words consisting of 5 different letters are printed in
 
 #### Word List Generator Script
 
-🟢 `lib/ruby-wordle/script-filter.rb`
+🟢 `lib/ruby-wordle-solver/script-filter.rb`
 
 A ruby script to generate *n*-letter word lists (`word-list.txt` and `word-list-uniq.txt`)
 
