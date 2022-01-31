@@ -37,6 +37,9 @@ fraze, grade, grame, grane, grave, graze
 ------------------------------------------------
 ```
 
+- Basic words consisting of 5 different letters are printed in 🟩 **green bold**
+- Basic words having the same letters used more than once are printed in 🟨 **yellow bold**
+
 🟢 `script-filter.rb`
 
 A filter script to generate *n*-letter word lists (`word-list.txt` and `word-list-uniq.txt`)
@@ -54,19 +57,31 @@ The default *n* value is 5. Change `NUM_LETTERS` if necessary, and execute the f
 
 🟢 `word-lists/5-letters/word-list.txt`
 
-A list of five-letter words, generated using a ruby script and the original word list.
+A list of five-letter words, generated from the original word list.
 
 🟢 `word-lists/5-letters/word-list-uniq-letters.txt`
 
-A list of five-letter words consisting of five different letters, generated using a script and the original word list.
+A list of five-letter words consisting of five different letters, generated from the original word list.
+
+🟢 `word-lists/5-letters/word-list-basic.txt`
+
+A list of five-letter words, generated from the basic word list.
+
+🟢 `word-lists/5-letters/word-list-basic-uniq-letters.txt`
+
+A list of five-letter words consisting of five different letters, generated from the basic word list.
 
 ----
 
-### Original List of English Words
+### Original/Basic Lists of English Words
 
 🟢 `word-lists/word-list-original.txt`
 
-A word list used to generate more useful word lists above. It is based on `words_alpha.txt` in [dwyl/english-words](https://github.com/dwyl/english-words).
+A large word list based on `words_alpha.txt` in [dwyl/english-words](https://github.com/dwyl/english-words), containing more than 370,000 items.
+
+🟢 `word-lists/word-list-basic.txt`
+
+A smaller word list containing about 13,000 basic English words.
 
 ----
 

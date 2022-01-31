@@ -3,6 +3,17 @@
 NUM_LETTERS = 5
 
 @word_list = File.readlines("./word-lists/#{NUM_LETTERS}-letters/word-list.txt").map(&:strip)
+
+@basic_word_list = {}
+File.readlines("./word-lists/#{NUM_LETTERS}-letters/word-list-basic.txt").map(&:strip).each do |b|
+  @basic_word_list[b] = true
+end
+
+@basic_word_uniq_list = {}
+File.readlines("./word-lists/#{NUM_LETTERS}-letters/word-list-basic-uniq-letters.txt").map(&:strip).each do |b|
+  @basic_word_uniq_list[b] = true
+end
+
 @letters_known = nil
 @letters_used  = nil
 @letters_not_used = nil
@@ -34,7 +45,7 @@ class String
 end
 
 def get_letters_known
-  puts 
+  puts
   puts  "STEP 1".bold.bg_green + " Input " + "known letters".underline + " using alphabets and dots"
   puts  "       Then press \"↵\" (Type \"quit↵\" to exit)"
   if @letters_known
@@ -63,7 +74,7 @@ def get_letters_used
   end
   print "       ＞ "
   letters_used = gets.strip.downcase
-  exit if letters_used == "quit" || letters_used == "q" 
+  exit if letters_used == "quit" || letters_used == "q"
   if letters_used.strip == ""
     array_letters_used = []
   elsif /\A(?:[1-5][a-z][\s,]*)+\z/ =~ letters_used
@@ -90,7 +101,7 @@ def get_letters_not_used
   end
   print "       ＞ "
   letters_not_used = gets.gsub(/\s+/, "").downcase
-  exit if letters_not_used == "quit" || letters_not_used == "q" 
+  exit if letters_not_used == "quit" || letters_not_used == "q"
   if letters_not_used.strip == ""
     array_letters_not_used = []
   elsif /\A[a-z\s]+\z/ =~ letters_not_used
@@ -125,16 +136,26 @@ def solve_wordle
 
   puts
   puts (' '.bg_green * 4 + ' '.bg_gray * 4 + ' '.bg_brown  * 4 + ' '.bg_gray * 4) * 3
-  puts word_list_b.join(", ")
+  results = word_list_b.map do |word|
+    if @basic_word_uniq_list[word]
+      word.green.bold
+    elsif @basic_word_list[word]
+      word.brown.bold
+    else
+      word
+    end
+  end.join("\t")
+  puts results
   puts (' '.bg_green * 4 + ' '.bg_gray * 4 + ' '.bg_brown  * 4 + ' '.bg_gray * 4) * 3
   puts
 
   exit if word_list_b.size < 2
-  
-  puts "Press \"↵\" to continue."
-  puts "Type \"quit↵\" to exit."
+
+  puts "       Press \"↵\" to continue."
+  puts "       Type \"quit↵\" to exit."
   response = gets.strip.downcase
-  if response == "quit" || response == "q" 
+  if response == "quit" || response == "q"
+    exit
   else
     solve_wordle
   end
