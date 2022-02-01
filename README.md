@@ -13,7 +13,7 @@ A set of ruby scripts to generate word-lists, solve Wordle, and play Wordle on t
 ### Installation
 
 ```
-> gem install ruby-wordle-solver
+> gem install ruby-wordle
 ```
 
 ----
@@ -26,7 +26,7 @@ A set of ruby scripts to generate word-lists, solve Wordle, and play Wordle on t
 > ruby-worldle play
 ```
 
-<img src='https://github.com/yohasebe/ruby-wordle-solver/blob/main/img/ruby-wordle-play.png?raw=true' width='500' />
+<img src='https://github.com/yohasebe/ruby-wordle/blob/main/img/ruby-wordle-play.png?raw=true' width='500' />
 
 You can ask for help by typing "?↵" while playing. In the suggestion list, basic words consisting of 5 different letters are printed in red 🟥 while basic words having the same letters used more than once are printed in blue 🟦
 
@@ -40,7 +40,7 @@ You can ask for help by typing "?↵" while playing. In the suggestion list, bas
 > ruby-worldle solver
 ```
 
-<img src='https://github.com/yohasebe/ruby-wordle-solver/blob/main/img/ruby-wordle-solver.png?raw=true' width='500' />
+<img src='https://github.com/yohasebe/ruby-wordle/blob/main/img/ruby-wordle-solver.png?raw=true' width='500' />
 
 In the result list, basic words consisting of 5 different letters are printed in red 🟥 while basic words having the same letters used more than once are printed in blue 🟦
 
@@ -50,7 +50,7 @@ In the result list, basic words consisting of 5 different letters are printed in
 
 #### Word List Generator Script
 
-🟢 `lib/ruby-wordle-solver/script-filter.rb`
+🟢 `lib/ruby-wordle/script-filter.rb`
 
 A ruby script to generate *n*-letter word lists (`word-list.txt` and `word-list-uniq.txt`)
 
