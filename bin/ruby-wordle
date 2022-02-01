@@ -1,0 +1,24 @@
+#!/usr/bin/env ruby
+
+$LOAD_PATH << File.join( File.dirname(__FILE__), '..', 'lib')
+$LOAD_PATH << File.join( File.dirname(__FILE__), '..', 'lib', 'ruby-wordle-solver')
+
+require 'version'
+require 'script-play'
+require 'script-solver'
+
+if ARGV[0] == "-v" || ARGV[0] == "--version"
+  puts "Ruby Wordle Solver #{RubyWordleSolver::VERSION}"
+  exit
+elsif ARGV[0] == "play" || ARGV[0] == "play" || ARGV[0] == "p"
+  RubyWordlePlay::play_wordle
+elsif ARGV[0] == "solver" || ARGV[0] == "solve" || ARGV[0] == "s"
+  RubyWordleSolver::run_interactively
+else
+  puts "Ruby Wordle Solver #{RubyWordleSolver::VERSION}"; puts
+  puts "Usage: ruby-wordle (play|solve)"
+  puts; puts "See https://github.com/yohasebe/ruby-wordle-solver"
+  exit
+end
+
+

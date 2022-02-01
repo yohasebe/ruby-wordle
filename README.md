@@ -1,6 +1,6 @@
-# Ruby-Wordle-Solver
+# Ruby-Wordle
 
-A set of ruby scripts to generate word-lists and solve Wordle
+A set of ruby scripts to generate word-lists, solve Wordle, and play Wordle on the command line
 
 ⬜️⬜️⬜️⬜️⬜️ \
 ⬜️⬜️⬜️🟨🟨 \
@@ -18,12 +18,26 @@ A set of ruby scripts to generate word-lists and solve Wordle
 
 ----
 
+### Play Wordle
+
+**Usage Example**
+
+```plain-text
+> ruby-worldle play
+```
+
+<img src='https://github.com/yohasebe/ruby-wordle-solver/blob/main/img/ruby-wordle-play.png?raw=true' width='500' />
+
+You can ask for help by typing "?↵" while playing. In the suggestion list, basic words consisting of 5 different letters are printed in red 🟥 while basic words having the same letters used more than once are printed in blue 🟦
+
+----
+
 ### Wordle Solver
 
 **Usage Example**
 
 ```plain-text
-> ruby-worldle-solver
+> ruby-worldle solver
 ```
 
 <img src='https://github.com/yohasebe/ruby-wordle-solver/blob/main/img/ruby-wordle-solver.png?raw=true' width='500' />

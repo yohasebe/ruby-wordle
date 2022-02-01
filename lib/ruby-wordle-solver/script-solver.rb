@@ -3,40 +3,17 @@
 HOME_DIR = File.expand_path(File.join(File.dirname(__FILE__), "..", ".."))
 
 require "readline"
-
-class String
-  def black;          "\e[30m#{self}\e[0m" end
-  def red;            "\e[31m#{self}\e[0m" end
-  def green;          "\e[32m#{self}\e[0m" end
-  def brown;          "\e[33m#{self}\e[0m" end
-  def blue;           "\e[34m#{self}\e[0m" end
-  def magenta;        "\e[35m#{self}\e[0m" end
-  def cyan;           "\e[36m#{self}\e[0m" end
-  def gray;           "\e[37m#{self}\e[0m" end
-
-  def bg_black;       "\e[40m#{self}\e[0m" end
-  def bg_red;         "\e[41m#{self}\e[0m" end
-  def bg_green;       "\e[42m#{self}\e[0m" end
-  def bg_brown;       "\e[43m#{self}\e[0m" end
-  def bg_blue;        "\e[44m#{self}\e[0m" end
-  def bg_magenta;     "\e[45m#{self}\e[0m" end
-  def bg_cyan;        "\e[46m#{self}\e[0m" end
-  def bg_gray;        "\e[47m#{self}\e[0m" end
-
-  def bold;           "\e[1m#{self}\e[22m" end
-  def italic;         "\e[3m#{self}\e[23m" end
-  def underline;      "\e[4m#{self}\e[24m" end
-  def blink;          "\e[5m#{self}\e[25m" end
-  def reverse_color;  "\e[7m#{self}\e[27m" end
-end
+require "script-utils"
 
 module RubyWordleSolver
   NUM_LETTERS = 5
+  MAX_SUGGESTIONS = 128
 
   LPAD = " " * 7
   PROMPT = "〉".bold.red
 
   @word_list = File.readlines("#{HOME_DIR}/word-lists/#{NUM_LETTERS}-letters/word-list.txt").map(&:strip)
+  @word_list_basic = File.readlines("#{HOME_DIR}/word-lists/#{NUM_LETTERS}-letters/word-list-basic.txt").map(&:strip)
 
   @basic_word_list = {}
   File.readlines("#{HOME_DIR}/word-lists/#{NUM_LETTERS}-letters/word-list-basic.txt").map(&:strip).each do |b|
@@ -124,43 +101,46 @@ module RubyWordleSolver
   end
 
   def self.draw_decorated_border
-    puts
-    puts (' '.bg_green * 5 + ' '.bg_gray * 3 + ' '.bg_brown  * 5 + ' '.bg_gray * 3) * 4
-    puts
+    puts; puts (' '.bg_green * 5 + ' '.bg_gray * 3 + ' '.bg_brown  * 5 + ' '.bg_gray * 3) * 4; puts
   end
 
-  def solve_wordle
-    draw_decorated_border
-    @letters_known = get_letters_known
-    @letters_used  = get_letters_used
-    @letters_not_used = get_letters_not_used
-    indices_unknown_letters = (0 ... @letters_known.length).find_all { |i| @letters_known[i, 1] == '.' }
+  def solve_wordle(letters_known, letters_used, letters_not_used, mode = :original, answer = nil)
+    word_list = mode == :original ? @word_list : @word_list_basic
+    indices_unknown_letters = (0 ... letters_known.length).find_all { |i| letters_known[i, 1] == '.' }
 
-    word_list_a = @word_list.select do |word|
-      Regexp.compile(@letters_known) =~ word
+    word_list_a = word_list.select do |word|
+      Regexp.compile(letters_known) =~ word
     end
 
     word_list_b = word_list_a.select do |word|
       word_letters = word.split(//)
-      letters_in_candidate = word_letters.values_at(*indices_unknown_letters) - @letters_used.map{|l| l[1]}
-      cond1 = @letters_used.all? do |position, letter|
+      letters_in_candidate = word_letters.values_at(*indices_unknown_letters) - letters_used.map{|l| l[1]}
+      cond1 = letters_used.all? do |position, letter|
         word_letters[position] != letter
       end
-      cond2 = (@letters_used.map{|l| l[1]} - word_letters).empty?
-      cond3 = (letters_in_candidate - @letters_not_used).size == letters_in_candidate.size
+      cond2 = (letters_used.map{|l| l[1]} - word_letters).empty?
+      cond3 = (letters_in_candidate - letters_not_used).size == letters_in_candidate.size
       cond1 && cond2 && cond3
     end
 
-    draw_decorated_border
-    results = word_list_b.map do |word|
+    if answer
+      word_list_b.delete(answer)
+      reduced_list = word_list_b.sample(MAX_SUGGESTIONS - 1)
+      reduced_list << answer
+    else
+      reduced_list = word_list_b.sample(MAX_SUGGESTIONS)
+    end
+
+    results = reduced_list.sort.map do |word|
       if @basic_word_uniq_list[word]
-        word.red.bold
+        mode == :original ? word.red.bold : word.red
       elsif @basic_word_list[word]
-        word.blue.bold
+        mode == :original ? word.blue.bold : word.blue
       else
         word
       end
     end
+    puts
     results.each_with_index do |word, i|
       if (i + 1) % 8 == 0 || results.size == i + 1
         print word + "\n"
@@ -168,8 +148,18 @@ module RubyWordleSolver
         print word + "   "
       end
     end
+    word_list_b
+  end
+
+  def run_interactively
     draw_decorated_border
-    exit if word_list_b.size < 2
+    @letters_known = get_letters_known
+    @letters_used  = get_letters_used
+    @letters_not_used = get_letters_not_used
+    results = solve_wordle(@letters_known, @letters_used, @letters_not_used)
+    draw_decorated_border
+
+    exit if results.size < 2
 
     puts "  ？  ".bold.bg_magenta + " Press \"↵\" to continue."
     puts LPAD + "Type \"quit↵\" to exit."
@@ -179,9 +169,11 @@ module RubyWordleSolver
     if response == "quit" || response == "q"
       exit
     else
-      solve_wordle
+      run_interactively
     end
   end
 
+  module_function :run_interactively
   module_function :solve_wordle
 end
+
