@@ -23,7 +23,7 @@ A set of ruby scripts to generate word-lists, solve Wordle, and play Wordle on t
 **Usage Example**
 
 ```plain-text
-> ruby-worldle play
+> ruby-wordle play
 ```
 
 <img src='https://github.com/yohasebe/ruby-wordle/blob/main/img/ruby-wordle-play.png?raw=true' width='500' />
@@ -37,7 +37,7 @@ You can ask for help by typing "?↵" while playing. In the suggestion list, bas
 **Usage Example**
 
 ```plain-text
-> ruby-worldle solver
+> ruby-wordle solver
 ```
 
 <img src='https://github.com/yohasebe/ruby-wordle/blob/main/img/ruby-wordle-solver.png?raw=true' width='500' />
