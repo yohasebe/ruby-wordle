@@ -1,21 +1,26 @@
-# -*- encoding: utf-8 -*-
-$:.push File.expand_path("../lib", __FILE__)
-
-require "ruby-wordle/version"
+require_relative "lib/ruby-wordle/version"
 
 Gem::Specification.new do |s|
   s.name        = "ruby-wordle"
   s.version     = RubyWordle::VERSION
   s.authors     = ["Yoichiro Hasebe"]
   s.email       = ["yohasebe@gmail.com"]
-  s.homepage    = "http://github.com/yohasebe/ruby-wordle"
-  s.summary     = %q{A set of ruby scripts to generate word-lists, solve Wordle, and play Wordle}
-  s.description = %q{A set of ruby scripts to generate word-lists, solve Wordle, and play Wordle}
-  s.licenses    = ["MIT"]
-  s.files         = `git ls-files`.split("\n")
-  s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
+  s.homepage    = "https://github.com/yohasebe/ruby-wordle"
+  s.summary     = "Play Wordle and solve Wordle on the command line"
+  s.description = "A command-line Wordle game and a solver that ranks the next guess, with English word lists."
+  s.license     = "MIT"
+  s.metadata    = {
+    "source_code_uri" => "https://github.com/yohasebe/ruby-wordle",
+    "changelog_uri" => "https://github.com/yohasebe/ruby-wordle/blob/main/CHANGELOG.md",
+    "rubygems_mfa_required" => "true"
+  }
+
+  s.required_ruby_version = ">= 3.2"
+  s.files = Dir["lib/**/*.rb", "bin/ruby-wordle", "word-lists/5-letters/*.txt",
+                "README.md", "CHANGELOG.md", "LICENSE"]
+  s.bindir = "bin"
+  s.executables = ["ruby-wordle"]
   s.require_paths = ["lib"]
 
-  # specify any dependencies here; for example:
-  s.add_runtime_dependency 'readline'
+  s.add_dependency "reline", "~> 0.3"
 end

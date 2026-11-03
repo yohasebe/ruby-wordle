@@ -1,6 +1,6 @@
 # Ruby-Wordle
 
-A set of ruby scripts to generate word-lists, solve Wordle, and play Wordle on the command line
+Play Wordle and solve Wordle on the command line
 
 ⬜️⬜️⬜️⬜️⬜️ \
 ⬜️⬜️⬜️🟨🟨 \
@@ -12,81 +12,111 @@ A set of ruby scripts to generate word-lists, solve Wordle, and play Wordle on t
 
 ### Installation
 
+Requires Ruby 3.2 or later.
+
 ```
-> gem install ruby-wordle
+gem install ruby-wordle
 ```
 
 ----
 
 ### Play Wordle
 
-**Usage Example**
-
-```plain-text
-> ruby-wordle play
+```
+ruby-wordle play
 ```
 
-<img src='https://github.com/yohasebe/ruby-wordle/blob/main/img/ruby-wordle-play.png?raw=true' width='500' />
+<img src="https://github.com/yohasebe/ruby-wordle/raw/main/img/play.png" width="500" alt="A game solved in four guesses" />
 
-You can ask for help by typing "?↵" while playing. In the suggestion list, basic words consisting of 5 different letters are printed in red 🟥 while basic words having the same letters used more than once are printed in blue 🟦
+Guess the 5-letter word in 6 tries. After each guess, the board shows each letter on a green tile (right place), a yellow tile (in the word, elsewhere) or a gray tile (not in the word, or already marked as many times as it occurs), and the keyboard below it shows the best color found for every letter so far. On a terminal, the board is updated in place; when the output below it no longer fits on the screen, the window is resized, or the input has non-ASCII characters, a new board is printed below instead.
+
+| Input | Action |
+| --- | --- |
+| a 5-letter word | Make a guess |
+| `?` | Show how many common words still fit your guesses |
+| `hint letter` | Reveal the letter at the first position not yet guessed correctly (once per game, and only while at least two such positions remain) |
+| `q` | Give up and show the answer |
+
+After a game with at least one guess, type `s` at the `Play again?` prompt to copy the result as emoji squares (🟩🟨⬛) to the clipboard, ready to paste into a post. Hints do not use up a guess, but a game with hints is marked `(assisted)` in the result and the copied text. A letter hint can still be enough to work out the word. Where no clipboard command is available (`pbcopy`, `wl-copy`, `xclip` or `xsel`), the result is printed instead.
+
+Answers are picked from a list of about 1,600 common words. Guesses are accepted from a list of about 16,000 words.
 
 ----
 
 ### Wordle Solver
 
-**Usage Example**
-
-```plain-text
-> ruby-wordle solver
+```
+ruby-wordle solve
 ```
 
-<img src='https://github.com/yohasebe/ruby-wordle/blob/main/img/ruby-wordle-solver.png?raw=true' width='500' />
+Enter each guess you made in a Wordle game together with the colors it got, one character per letter: `g` green, `y` yellow, `x` gray (`2`, `1`, `0` also work).
 
-In the result list, basic words consisting of 5 different letters are printed in red 🟥 while basic words having the same letters used more than once are printed in blue 🟦
+```
+1 > crane yxxyg
+2 > niche yxyxg
+```
+
+<img src="https://github.com/yohasebe/ruby-wordle/raw/main/img/solve.png" width="700" alt="The solver after two guesses" />
+
+After each line, the solver shows how many words are still possible, the best next guesses, and the possible words. Common words come first; those with five different letters are in red and the others in blue.
+
+The next guesses are ranked by the expected number of common words left after playing them (shown as `~3.8`). Words that can still be the answer are in bold; the others are good for narrowing down the answer but cannot be it.
+
+| Input | Action |
+| --- | --- |
+| `GUESS COLORS` | Add a turn, e.g. `crane xyxxg` |
+| `undo` | Remove the last turn |
+| `reset` | Start over |
+| `all` | List every possible word |
+| `q` | Quit |
+
+To get the result without prompts, pass the turns as arguments:
+
+```
+ruby-wordle solve crane:xxxxx pilot:yygxy
+```
+
+----
+
+### Colors
+
+Colors are off when the output is not a terminal, when `NO_COLOR` is set to a non-empty value, or with `--no-color`. Without colors, `[A]` is green, `(A)` is yellow and a lowercase letter is gray.
 
 ----
 
 ### Word Lists
 
-#### Word List Generator Script
+The 5-letter lists used by the game and the solver are in `word-lists/5-letters`:
 
-🟢 `lib/ruby-wordle/script-filter.rb`
+| File | Contents |
+| --- | --- |
+| `word-list.txt` | All 5-letter words (accepted guesses) |
+| `word-list-uniq-letters.txt` | All 5-letter words with five different letters |
+| `word-list-basic.txt` | Common 5-letter words (answers) |
+| `word-list-basic-uniq-letters.txt` | Common 5-letter words with five different letters |
 
-A ruby script to generate *n*-letter word lists (`word-list.txt` and `word-list-uniq.txt`)
+They are generated from two source lists in the repository:
 
-The default *n* value is 5. Change `NUM_LETTERS` if necessary, and run the script as follows. A directory will be created automatically with the title having the number specified in the script (e.g. `word-lists/5-letters`, `word-lists/6-letters`) and resulting word lists will be stored in that directory.
+- `word-lists/word-list-original.txt`: about 370,000 English words, based on `words_alpha.txt` in [dwyl/english-words](https://github.com/dwyl/english-words)
+- `word-lists/word-list-basic.txt`: about 13,000 basic English words
 
-----
+Only alphabetic words are kept, and capitalized entries in the basic list (proper nouns) are left out of the common words. To generate lists of another length into `word-lists/N-letters`, run in a clone of the repository:
 
-#### Lists of English Words of 5 Letters (useful to solve Wordle)
-
-🟡 `word-lists/5-letters/word-list.txt`
-
-A list of five-letter words, generated from the original word list.
-
-🟡 `word-lists/5-letters/word-list-uniq-letters.txt`
-
-A list of five-letter words consisting of five different letters, generated from the original word list.
-
-🟡 `word-lists/5-letters/word-list-basic.txt`
-
-A list of five-letter words, generated from the basic word list.
-
-🟡 `word-lists/5-letters/word-list-basic-uniq-letters.txt`
-
-A list of five-letter words consisting of five different letters, generated from the basic word list.
+```
+bundle install
+bundle exec rake wordlists LENGTH=6
+```
 
 ----
 
-#### Original/Basic Lists of English Words
+### Development
 
-⚪️ `word-lists/word-list-original.txt`
+```
+bundle install
+bundle exec rake test
+```
 
-A large word list based on `words_alpha.txt` in [dwyl/english-words](https://github.com/dwyl/english-words), containing more than 370,000 items.
-
-⚪️ `word-lists/word-list-basic.txt`
-
-A smaller word list containing about 13,000 basic English words.
+The screenshots in `img/` are recorded from `img/*.tape` with `bundle exec rake screenshots`, which requires [VHS](https://github.com/charmbracelet/vhs) and ttyd.
 
 ----
 

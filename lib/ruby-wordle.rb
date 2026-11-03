@@ -1,0 +1,7 @@
+require "ruby-wordle/version"
+require "ruby-wordle/feedback"
+require "ruby-wordle/dictionary"
+require "ruby-wordle/game"
+require "ruby-wordle/solver"
+require "ruby-wordle/style"
+require "ruby-wordle/cli"

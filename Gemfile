@@ -1,3 +1,6 @@
-source "http://rubygems.org"
+source "https://rubygems.org"
 
-gem 'readline'
+gemspec
+
+gem "minitest", "~> 5.0"
+gem "rake", "~> 13.0"
