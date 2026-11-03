@@ -1,5 +1,14 @@
 require "bundler/gem_tasks"
 require "rake/testtask"
+require_relative "lib/ruby-wordle/version"
+
+# The release gate: `rake build` (and so `rake release`) fails unless the
+# built gem passes both checks.
+Rake::Task["build"].enhance do
+  gem = "pkg/ruby-wordle-#{RubyWordle::VERSION}.gem"
+  sh "ruby", "script/verify_gem.rb", gem
+  sh "ruby", "script/verify_gem_local.rb", gem
+end
 
 Rake::TestTask.new(:test) do |t|
   t.libs << "lib" << "test"

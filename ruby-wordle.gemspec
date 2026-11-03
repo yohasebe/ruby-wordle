@@ -16,8 +16,10 @@ Gem::Specification.new do |s|
   }
 
   s.required_ruby_version = ">= 3.2"
+  # Only files tracked by git ship, even if other files match the patterns.
+  tracked = IO.popen(%w[git ls-files -z], chdir: __dir__, &:read).split("\x0")
   s.files = Dir["lib/**/*.rb", "bin/ruby-wordle", "word-lists/5-letters/*.txt",
-                "README.md", "CHANGELOG.md", "LICENSE"]
+                "README.md", "CHANGELOG.md", "LICENSE", base: __dir__] & tracked
   s.bindir = "bin"
   s.executables = ["ruby-wordle"]
   s.require_paths = ["lib"]
