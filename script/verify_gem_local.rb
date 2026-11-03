@@ -46,7 +46,13 @@ failures = []
 dirty = git("status", "--porcelain", "--untracked-files=all").lines.map(&:chomp)
 failures << "working tree is not clean (#{dirty.size}):\n  " + dirty.join("\n  ") unless dirty.empty?
 
-differ = payload.reject { |name, data| git("show", "HEAD:#{name}") == data }.keys
+# The blob of +name+ in HEAD, or nil when HEAD has no such file.
+def head_blob(name)
+  out = IO.popen(["git", "show", "HEAD:#{name}"], "rb", err: File::NULL, &:read)
+  out if $?.success?
+end
+
+differ = payload.reject { |name, data| head_blob(name) == data }.keys
 failures << "shipped files differ from HEAD (#{differ.size}):\n  " + differ.join("\n  ") unless differ.empty?
 
 lists = payload.keys.grep(%r{\Aword-lists/5-letters/[^/]+\.txt\z}).sort
