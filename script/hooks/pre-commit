@@ -1,0 +1,8 @@
+#!/bin/sh
+# Repository-local pre-commit hook: the next commit must pass the tracked-path
+# allow list (script/check_tracked_paths.rb).
+#
+# Install: ln -s ../../script/hooks/pre-commit .git/hooks/pre-commit
+# Bypass: git commit --no-verify
+
+exec ruby "$(git rev-parse --show-toplevel)/script/check_tracked_paths.rb"

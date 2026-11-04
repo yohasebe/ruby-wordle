@@ -116,6 +116,8 @@ bundle install
 bundle exec rake test
 ```
 
+Every tracked file must match a line of `script/tracked_paths.allow`. To check it before each commit and push, run `ln -s ../../script/hooks/pre-commit ../../script/hooks/pre-push .git/hooks/`.
+
 The screenshots in `img/` are recorded from `img/*.tape` with `bundle exec rake screenshots`, which requires [VHS](https://github.com/charmbracelet/vhs) and ttyd.
 
 ----

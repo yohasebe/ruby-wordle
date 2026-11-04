@@ -1,0 +1,21 @@
+# Every tracked file must match a line, and every alternative must match a
+# tracked file. Checked by script/check_tracked_paths.rb.
+.github/workflows/test.yml
+.gitignore
+CHANGELOG.md
+Gemfile
+LICENSE
+README.md
+Rakefile
+ruby-wordle.gemspec
+bin/ruby-wordle
+img/{play,solve}.{png,tape}
+lib/ruby-wordle.rb
+lib/ruby-wordle/*.rb
+script/{check_tracked_paths,verify_gem,verify_gem_local}.rb
+script/tracked_paths.allow
+script/hooks/{pre-commit,pre-push}
+test/*_test.rb
+test/test_helper.rb
+word-lists/word-list-{basic,original}.txt
+word-lists/5-letters/word-list{,-basic}{,-uniq-letters}.txt
