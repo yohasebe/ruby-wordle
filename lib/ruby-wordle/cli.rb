@@ -193,7 +193,8 @@ module RubyWordle
             game.guess(line)
             draw(game)
           rescue Game::InvalidGuess => e
-            say @style.paint("  Sorry, #{e.message}.", :red)
+            say @style.paint("  Sorry, #{e.message}.", :red) +
+                (e.is_a?(Game::UnknownWord) ? @style.paint(" (q to give up)", :gray) : "")
           end
         end
       end

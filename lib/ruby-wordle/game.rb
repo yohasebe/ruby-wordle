@@ -4,6 +4,7 @@ module RubyWordle
   # One round of Wordle with a hidden answer.
   class Game
     class InvalidGuess < StandardError; end
+    class UnknownWord < InvalidGuess; end
 
     MAX_ATTEMPTS = 6
 
@@ -53,7 +54,7 @@ module RubyWordle
     def guess(word)
       raise InvalidGuess, "the game is over" if over?
       raise InvalidGuess, "type #{length} letters (a-z)" unless word.match?(/\A[a-z]{#{length}}\z/)
-      raise InvalidGuess, "\"#{word}\" is not in the word list" unless @dictionary.valid_guess?(word)
+      raise UnknownWord, "\"#{word}\" is not in the word list" unless @dictionary.valid_guess?(word)
 
       pattern = Feedback.score(word, @answer)
       @history << [word, pattern]

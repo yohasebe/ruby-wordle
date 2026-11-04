@@ -175,9 +175,15 @@ class CLITest < Minitest::Test
   def test_play_win
     status, out = run_cli(["play"], "qqqqq\n#{answer}\nn\n")
     assert_equal 0, status
-    assert_includes out, "not in the word list"
+    assert_includes out, "not in the word list. (q to give up)"
     assert_includes out, "Solved in 1/6"
     assert_includes out, "[#{answer[0].upcase}]"
+  end
+
+  def test_give_up_is_offered_only_for_unknown_words
+    _, out = run_cli(["play"], "abc\nq\nn\n")
+    assert_includes out, "type 5 letters"
+    refute_includes out, "q to give up)"
   end
 
   def test_play_hint_and_give_up_at_eof
