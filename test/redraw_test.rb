@@ -7,7 +7,7 @@ class RedrawTest < Minitest::Test
 
   # A CLI that behaves as if it ran on a terminal of the given size. The
   # terminal echoes the typed line; +on_read+ runs before each line is read.
-  def play(lines, size: [40, 80], on_read: nil)
+  def play(lines, size: [40, 80], on_read: nil, command: "play")
     out = StringIO.new
     input = StringIO.new(lines.join("\n") + "\n")
     cli = RubyWordle::CLI.new(input: input, output: out, dictionary: small_dictionary,
@@ -21,7 +21,7 @@ class RedrawTest < Minitest::Test
       out.print prompt, line
       line
     end
-    cli.run(["play"])
+    cli.run([command])
     out.string
   end
 
@@ -35,6 +35,28 @@ class RedrawTest < Minitest::Test
 
   def test_board_is_redrawn_over_the_previous_one
     assert_equal [BOARD_AND_PROMPT, BOARD_AND_PROMPT], rewinds(play(%w[level cigar q n]))
+  end
+
+  # Without wrapping, each rewind goes up exactly the lines printed since the
+  # previous one, starting after the instructions.
+  def assert_solver_redraws(lines, count)
+    out = play(lines, command: "solve")
+    body = out.split("undo, reset, all, q\n", 2).last
+    segments = body.split(/\e\[\d+A\r\e\[J/)
+    assert_equal count, rewinds(out).size
+    assert_equal segments[0...count].map { |text| text.count("\n") }, rewinds(out)
+  end
+
+  def test_solver_turns_are_redrawn_over_the_previous_ones
+    assert_solver_redraws(["crane xxxxx", "undo", "reset", "q"], 3)
+  end
+
+  def test_solver_list_of_all_words_is_redrawn
+    assert_solver_redraws(["all", "crane xxxxx", "q"], 1)
+  end
+
+  def test_solver_starts_over_in_place
+    assert_solver_redraws(["cigar ggggg", "y", "crane xxxxx", "q"], 3)
   end
 
   def test_messages_below_the_board_are_counted

@@ -58,9 +58,9 @@ Enter each guess you made in a Wordle game together with the colors it got, one 
 
 <img src="https://github.com/yohasebe/ruby-wordle/raw/main/img/solve.png" width="700" alt="The solver after two guesses" />
 
-After each line, the solver shows how many words are still possible, the best next guesses, and the possible words. Common words come first; those with five different letters are in red and the others in blue.
+After each line, the solver shows how many words are still possible, the best next guesses, and the possible words, grouped into common words from the basic word list and other words. Every listed word fits the colors. On a terminal, the turns and the possible words are updated in place, as in the game. When a guess gets all green, the solver asks whether to solve another.
 
-The next guesses are ranked by the expected number of common words left after playing them (shown as `~3.8`). Words that can still be the answer are in bold; the others are good for narrowing down the answer but cannot be it.
+The next guesses are ranked by the expected number of common words left after playing them (shown as `~3.8`). Words that can still be the answer are in bold; the others are in gray (marked `(probe)` without colors) and are good for narrowing down the answer but cannot be it.
 
 | Input | Action |
 | --- | --- |

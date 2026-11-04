@@ -116,11 +116,12 @@ module RubyWordle
 
     # --- redraw -------------------------------------------------------------
     #
-    # On a terminal, the board is drawn over the previous one together with
-    # the prompts, hints and messages printed below it. The rows printed since
-    # the board started are counted; when the count may be wrong (the window
-    # was resized, or input had characters of unknown width) or the rows no
-    # longer fit on the screen, a new board is printed below instead.
+    # On a terminal, the board (in the solver, the turns and the candidates) is
+    # drawn over the previous one together with the prompts, hints and
+    # messages printed below it. The rows printed since the board started are
+    # counted; when the count may be wrong (the window was resized, or input
+    # had characters of unknown width) or the rows no longer fit on the
+    # screen, a new board is printed below instead.
 
     def start_redraw
       size = interactive_terminal? && terminal_size
@@ -297,6 +298,7 @@ module RubyWordle
       solver = Solver.new(dictionary)
       say @style.paint("Enter each guess and its colors, e.g. crane xyxxg", :bold, :cyan)
       say @style.paint("g = green, y = yellow, x = gray. Commands: undo, reset, all, q", :gray)
+      start_redraw
       report(solver)
 
       loop do
@@ -314,9 +316,26 @@ module RubyWordle
 
           solver.add(*turn)
         end
+        rewind
         show_history(solver)
         report(solver)
+        next unless solved?(solver)
+        break unless %w[y yes].include?(ask("Solve another? [y/N] "))
+
+        solver.reset
+        rewind
+        report(solver)
       end
+      stop_redraw
+    end
+
+    # The last turn is all green and every turn fits that word. The word need
+    # not be in the word list.
+    def solved?(solver)
+      answer, pattern = solver.history.last
+      return false unless pattern == Feedback.solved(dictionary.length)
+
+      solver.history.all? { |guess, colors| Feedback.score(guess, answer) == colors }
     end
 
     def solve_once(args)
@@ -329,7 +348,7 @@ module RubyWordle
       end
       show_history(solver)
       report(solver, all: true)
-      solver.candidates.empty? ? 1 : 0
+      solved?(solver) || !solver.candidates.empty? ? 0 : 1
     end
 
     # Accepts "crane xyxxg" or "crane:xyxxg".
@@ -355,6 +374,15 @@ module RubyWordle
     def report(solver, all: false)
       candidates = solver.candidates
       say
+      if solved?(solver)
+        say @style.paint("  Solved in #{solver.history.size}!", :bold, :green)
+      else
+        report_candidates(solver, candidates, all)
+      end
+      say
+    end
+
+    def report_candidates(solver, candidates, all)
       case candidates.size
       when 0
         say @style.paint("  No word matches. Check the colors, or type undo.", :red)
@@ -364,30 +392,35 @@ module RubyWordle
         common = candidates.count { |w| dictionary.common?(w) }
         say "  #{candidates.size} words possible (#{common} common)"
         tries = solver.suggest(SUGGESTIONS).map do |s|
-          "#{@style.paint(s.word, s.possible ? :bold : :gray)} #{@style.paint(format('~%.1f', s.expected), :dim)}"
+          "#{try_word(s)} #{@style.paint(format('~%.1f', s.expected), :dim)}"
         end
         say "  Try: #{tries.join('   ')}"
         list(candidates, all: all)
       end
-      say
     end
 
-    # Common words first; words with five different letters are in red,
-    # other common words in blue.
+    # A suggestion that cannot be the answer is gray, or marked without colors.
+    def try_word(suggestion)
+      return @style.paint(suggestion.word, :bold) if suggestion.possible
+
+      @style.color? ? @style.paint(suggestion.word, :gray) : "#{suggestion.word} (probe)"
+    end
+
+    # Common words, then the others, at most LISTED in all unless +all+.
     def list(words, all: false)
-      sorted = words.partition { |w| dictionary.common?(w) }.flatten(1)
-      shown = all ? sorted : sorted.first(LISTED)
-      say
-      shown.each_slice(COLUMNS) do |slice|
-        say "  " + slice.map { |w| colorize(w) }.join("  ")
+      limit = all ? words.size : LISTED
+      shown = 0
+      common, other = words.partition { |w| dictionary.common?(w) }
+      [["Common words", common], ["Other words", other]].each do |label, group|
+        group = group.first(limit - shown)
+        next if group.empty?
+
+        say
+        say "  #{label}:"
+        group.each_slice(COLUMNS) { |slice| say "  " + slice.join("  ") }
+        shown += group.size
       end
-      say @style.paint("  ... #{words.size - shown.size} more (type all)", :gray) if shown.size < words.size
-    end
-
-    def colorize(word)
-      return word unless dictionary.common?(word)
-
-      @style.paint(word, word.chars.uniq.size == word.size ? :red : :blue)
+      say @style.paint("  ... #{words.size - shown} more (type all)", :gray) if shown < words.size
     end
   end
 end

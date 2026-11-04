@@ -1,7 +1,7 @@
 Set Shell "bash"
 Set FontSize 26
 Set Width 1400
-Set Height 1260
+Set Height 660
 Set Padding 36
 Set Theme "Catppuccin Mocha"
 Set TypingSpeed 60ms

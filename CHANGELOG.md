@@ -4,6 +4,8 @@
 
 - Changed: The solver takes each guess with its colors on one line (`crane xyxxg`) and supports `undo`, `reset` and `all`.
 - Changed: `ruby-wordle solve GUESS:COLORS ...` prints the candidates without prompting.
+- Changed: The solver shows the turns as tiles and groups the candidates into common and other words, updated in place on a terminal.
+- Changed: The solver ends when a guess gets all green and asks whether to solve another.
 - Changed: The solver ranks the next guess by the expected number of words left instead of listing a random sample.
 - Changed: The game shows the board and a keyboard with the colors of every letter tried, updated in place on a terminal.
 - Changed: After a game, `s` copies the result as emoji squares to the clipboard.

@@ -50,7 +50,7 @@ class CLITest < Minitest::Test
   end
 
   def test_injected_streams_are_used_even_if_they_claim_a_tty
-    input = StringIO.new("cigar ggggg\n")
+    input = StringIO.new("cigar ggxxg\n")
     output = StringIO.new
     [input, output].each { |io| def io.tty? = true }
     RubyWordle::CLI.new(input: input, output: output, dictionary: small_dictionary, env: {}).run(["solve"])
@@ -83,16 +83,93 @@ class CLITest < Minitest::Test
     refute_includes out, "shell"
   end
 
+  def test_solve_groups_common_words_first
+    _, out = run_cli(["solve", "zzzzz:xxxxx"])
+    common = out.index("Common words:")
+    other = out.index("Other words:")
+    assert common && other && common < other
+    assert_operator out.index("cigar"), :<, other
+    assert_operator out.index("array"), :>, other
+  end
+
+  def list_output(common:, other:, all: false)
+    words = ("aaaaa"..).first(common + other)
+    dictionary = RubyWordle::Dictionary.new(answers: words.first(common), guesses: words)
+    out = StringIO.new
+    cli = RubyWordle::CLI.new(input: StringIO.new, output: out, dictionary: dictionary, env: {})
+    cli.send(:list, words, all: all)
+    out.string
+  end
+
+  def test_list_limit_counts_both_groups
+    limit = RubyWordle::CLI::LISTED
+    out = list_output(common: limit - 2, other: 5)
+    assert_includes out, "Other words:"
+    assert_equal limit, out.scan(/\b[a-z]{5}\b(?!:)/).size
+    assert_includes out, "... 3 more (type all)"
+    refute_includes list_output(common: limit + 1, other: 3), "Other words:"
+    all = list_output(common: limit - 2, other: 5, all: true)
+    assert_includes all, "Other words:"
+    refute_includes all, "more (type all)"
+  end
+
+  def test_probe_suggestions_are_marked_without_colors
+    cli = RubyWordle::CLI.new(input: StringIO.new, output: StringIO.new, dictionary: small_dictionary, env: {})
+    assert_equal "crane (probe)", cli.send(:try_word, RubyWordle::Solver::Suggestion.new("crane", 1.0, false))
+    assert_equal "cigar", cli.send(:try_word, RubyWordle::Solver::Suggestion.new("cigar", 1.0, true))
+  end
+
   def test_solve_once_rejects_bad_turn
     assert_equal 1, run_cli(["solve", "crane:xyz"]).first
-    assert_equal 1, run_cli(["solve", "zzzzz:ggggg", "cigar:ggggg"]).first
+    assert_equal 1, run_cli(["solve", "cigar:ggggg", "apple:xxxxx"]).first
   end
 
   def test_interactive_solve_until_eof
-    status, out = run_cli(["solve"], "cigar ggggg\nundo\nbad\n")
+    status, out = run_cli(["solve"], "cigar ggxxg\nundo\nbad\n")
     assert_equal 0, status
-    assert_includes out, "The answer is CIGAR"
+    assert_includes out, "The answer is CIDER"
     assert_includes out, "Sorry"
+  end
+
+  def test_solve_ends_when_solved
+    status, out = run_cli(["solve"], "crane gyyxx\ncigar ggggg\nn\nlevel xxxxx\n")
+    assert_equal 0, status
+    assert_includes out, "Solved in 2!"
+    assert_includes out, "Solve another? [y/N]"
+    refute_includes out, "3 >"
+  end
+
+  def test_contradicting_turns_are_not_solved
+    status, out = run_cli(["solve"], "crane xxxxx\ncigar ggggg\nundo\n")
+    assert_equal 0, status
+    refute_includes out, "Solved"
+    assert_includes out, "No word matches"
+    assert_includes out, "3 >"
+    assert_equal 1, run_cli(["solve", "crane:xxxxx", "cigar:ggggg"]).first
+    assert_equal 1, run_cli(["solve", "cigar:ggggg", "apple:ggggg"]).first
+  end
+
+  def test_solved_word_need_not_be_in_the_list
+    status, out = run_cli(["solve", "fence:ggggg"])
+    assert_equal 0, status
+    assert_includes out, "Solved in 1!"
+  end
+
+  def test_end_of_input_at_solve_another
+    status, out = run_cli(["solve"], "cigar ggggg\n")
+    assert_equal 0, status
+    assert out.end_with?("Solve another? [y/N] ")
+  end
+
+  def test_solve_another_starts_over
+    _, out = run_cli(["solve"], "cigar ggggg\ny\n")
+    assert_includes out.split("Solve another?").last, "1 >"
+  end
+
+  def test_solve_once_when_solved
+    status, out = run_cli(["solve", "cigar:ggggg"])
+    assert_equal 0, status
+    assert_includes out, "Solved in 1!"
   end
 
   def test_play_win
