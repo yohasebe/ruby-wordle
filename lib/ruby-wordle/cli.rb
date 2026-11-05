@@ -33,11 +33,13 @@ module RubyWordle
     CLIPBOARD_COMMANDS = [%w[pbcopy], %w[wl-copy], %w[xclip -selection clipboard], %w[xsel --clipboard --input]].freeze
 
     # +clipboard+ takes the text to copy and returns whether it was copied.
-    def initialize(input: $stdin, output: $stdout, dictionary: nil, random: Random.new, env: ENV, clipboard: nil)
+    def initialize(input: $stdin, output: $stdout, dictionary: nil, random: Random.new, env: ENV, clipboard: nil,
+                   recent: RecentAnswers.for(env))
       @input = input
       @output = output
       @dictionary = dictionary
       @random = random
+      @recent = recent
       @clipboard = clipboard || method(:copy_to_system_clipboard)
       @style = Style.for(output, env)
     end
@@ -162,7 +164,8 @@ module RubyWordle
 
     def play
       loop do
-        game = Game.new(dictionary, random: @random)
+        game = Game.new(dictionary, random: @random, avoid: @recent.words)
+        @recent.add(game.answer)
         play_round(game)
         options = game.history.empty? ? "[y/N]" : "[y/N/s(hare)]"
         line = ask("Play again? #{options} ")

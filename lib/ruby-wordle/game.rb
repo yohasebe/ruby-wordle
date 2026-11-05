@@ -10,9 +10,12 @@ module RubyWordle
 
     attr_reader :answer, :history, :max_attempts, :dictionary, :revealed
 
-    def initialize(dictionary, answer: nil, random: Random.new, max_attempts: MAX_ATTEMPTS)
+    # The answer is picked from words not in +avoid+, or from all answers if
+    # every one is avoided.
+    def initialize(dictionary, answer: nil, random: Random.new, avoid: [], max_attempts: MAX_ATTEMPTS)
       @dictionary = dictionary
-      @answer = answer || dictionary.answers.sample(random: random)
+      pool = dictionary.answers - avoid
+      @answer = answer || (pool.empty? ? dictionary.answers : pool).sample(random: random)
       raise ArgumentError, "#{@answer} is not in the word list" unless dictionary.valid_guess?(@answer)
 
       @max_attempts = max_attempts
