@@ -186,6 +186,14 @@ class CLITest < Minitest::Test
     refute_includes out, "q to give up)"
   end
 
+  def test_help_lists_commands_without_assisting
+    copied = nil
+    _, out = run_cli(["play"], "help\n#{answer}\ns\nn\n", clipboard: ->(text) { copied = text })
+    assert_includes out, "hint letter = reveal a letter, q = give up"
+    refute_includes out, "words still fit"
+    assert_equal "ruby-wordle 1/6\n\n🟩🟩🟩🟩🟩\n", copied
+  end
+
   def test_play_hint_and_give_up_at_eof
     status, out = run_cli(["play"], "?\nlevel\n")
     assert_equal 0, status

@@ -2,6 +2,7 @@ require "ruby-wordle/version"
 require "ruby-wordle/feedback"
 require "ruby-wordle/dictionary"
 require "ruby-wordle/game"
+require "ruby-wordle/recent_answers"
 require "ruby-wordle/solver"
 require "ruby-wordle/style"
 
@@ -164,8 +165,7 @@ module RubyWordle
 
     def play
       loop do
-        game = Game.new(dictionary, random: @random, avoid: @recent.words)
-        @recent.add(game.answer)
+        game = Game.new(dictionary, answer: @recent.pick(dictionary.answers, @random))
         play_round(game)
         options = game.history.empty? ? "[y/N]" : "[y/N/s(hare)]"
         line = ask("Play again? #{options} ")
@@ -187,7 +187,9 @@ module RubyWordle
         line = ask("#{game.history.size + 1}/#{game.max_attempts} > ")
         if quit?(line)
           break
-        elsif ["?", "h", "hint", "help"].include?(line)
+        elsif line == "help"
+          say @style.paint("  ? = how many words fit, hint letter = reveal a letter, q = give up", :gray)
+        elsif ["?", "h", "hint"].include?(line)
           hint(game)
         elsif ["hint letter", "letter"].include?(line)
           hint_letter(game)

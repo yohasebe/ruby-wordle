@@ -69,6 +69,12 @@ class RedrawTest < Minitest::Test
     assert_equal [BOARD_AND_PROMPT + 2 + 1], rewinds(play(["a" * 60, "level", "q", "n"], size: [40, 50]))
   end
 
+  def test_wrapped_help_and_give_up_notice_are_counted
+    # At width 50 the help line and the unknown-word notice wrap to two rows
+    # each, and each is followed by a one-row prompt.
+    assert_equal [BOARD_AND_PROMPT + 2 + 1 + 2 + 1], rewinds(play(%w[help qqqqq level q n], size: [40, 50]))
+  end
+
   def test_unknown_terminal_size_appends
     [nil, [0, 0], [24, 0]].each do |size|
       out = play(%w[level q n], size: size)
